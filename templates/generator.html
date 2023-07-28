@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Generator Model</title>
+  <link rel="stylesheet" href="static\specialTables.css">
+  <style>
+    th,button {
+        font-size: 10px;
+    }
+
+    h1,h2 {
+        font-size: 16px;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 10px;
+    }
+
+    .logout-button {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #ff0000;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/logout" class="logout-button">Logout</a>
+</header>
+
+  <h1>GENERATOR: GENSAL</h1>
+
+  <div class="card">
+    <h2 class="table-heading">For Machine at:</h2>
+    <table id = "busIDAdd">
+      <thead>
+        <tr>
+          <th>Bus</th>
+          <th>ID</th>
+          <th>Add Bus</th>
+        </tr>
+      </thead>
+      <form id="myForm" onsubmit="submitForm(event)">
+      <tbody>
+        <tr id="row1">
+          <td>
+            <select name = "ToBusNum"></select>
+          </td>
+          <td>
+            <select name = "ID"></select>
+          </td>
+          <td>
+            <button class="btn btn-primary" onclick="addBusID()">Add</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id = "iconTable">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">ICON</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">PARAMETER</th>
+                <th scope="col">VALUE</th>
+                <th scope="col">UNITS</th>
+                <th scope="col">ADD ICON</th>
+                <th scope="col">REMOVE ICON</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="number"></td>
+                <td></td>
+                <td>
+                  <button class="btn btn-primary" onclick="addRow('iconTable')">Add</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+
+
+  <div id = "conTable">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">CON</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">PARAMETER</th>
+                <th scope="col">VALUE</th>
+                <th scope="col">UNITS</th>
+                <th scope="col">ACTION</th>
+                <th scope="col">REMOVE CON</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><input type="number"></td>
+              <td></td>
+              <td>
+                <button class="btn btn-primary" onclick="addRow('conTable')">Add</button>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h1>Upload Model</h1>
+    <input type="file" accept="image/*">
+  </div>
+
+    <tr>
+      <td colspan="14">
+        <div class="button-container">
+          <button onclick="newTable()"  class="btn btn-primary">New Table</button>
+          <button  class="btn btn-primary">Submit</button>
+        </div>
+      </td>
+    </tr>
+</form>
+
+<script>
+    // var busNumbersData = JSON.parse('{{ busNumbers|tojson }}');
+    // var busNumbersData = JSON.parse('{{ table|tojson }}');
+    function fillOptions(model, array) {
+      for (var i = 0; i < array.length; i++) {
+        var option = document.createElement("option");
+        option.value = array[i];
+        option.textContent = array[i];
+        model.appendChild(option);
+      }
+   }
+
+   function newTable(){
+        event.preventDefault();
+
+        // Send the multipart form-data request
+        fetch("/table", {
+          method: "POST",
+          body: formDataUpload,
+          headers: {
+                  "X-request-ID": "newTable" // set the X-request-ID header
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Error uploading file and data");
+          }
+        })
+        .then(data => {
+          const redirectUrl = data.redirect_url;
+          window.location = redirectUrl;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+   }
+
+    function addBusID() {
+      var tbody = document.querySelector("#busIDAdd");
+      var row = document.createElement("tr");
+      var selectCell1 = document.createElement("td");
+      var select1 = document.createElement("select");
+      selectCell1.appendChild(select1);
+      row.appendChild(selectCell1);
+
+      var selectCell2 = document.createElement("td");
+      var select2 = document.createElement("select");
+      selectCell2.appendChild(select2);
+      row.appendChild(selectCell2);
+
+      var buttonCell = document.createElement("td");
+      var button = document.createElement("button");
+      button.textContent = "Remove";
+      button.className = "btn btn-primary"; 
+      button.onclick = function () {
+        row.remove();
+      };
+      buttonCell.appendChild(button);
+      row.appendChild(buttonCell);
+      tbody.appendChild(row);
+    }
+
+    function addRow(tableId) {
+      var tbody = document.querySelector(`#${tableId} tbody`);
+      var newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><input type="number"></td>
+        <td></td>
+        <td>
+          <button class="btn btn-primary" onclick="addRow('iconTable')">Add</button>
+        </td>
+        <td>
+          <button class="btn btn-primary" onclick="removeRow(this)">Remove</button>
+        </td>
+      `;
+  
+      tbody.appendChild(newRow);
+    }
+  
+    function removeRow(button) {
+      var row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+
+
+    function selectBusNum(num) {
+      var data = document.querySelector("#row" + num + " td select[name='ID']");
+      for (var i = 1; i < 10; i++) {
+        var option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        data.appendChild(option);
+      }
+    }
+
+    function selectIDNum(num) {
+      var selectElement = document.querySelector("#row" + num + " td select[name='ToBusNum']");
+      if(busNumbersData) {
+        for (var i = 0; i < busNumbersData.length; i++) {
+          var option = document.createElement("option");
+          option.value = busNumbersData[i];
+          option.textContent = busNumbersData[i];
+          selectElement.appendChild(option);
+        }
+      }       
+    }
+
+  window.onload = function () {
+    fillOptions(document.querySelector(".generator-container select"), ["GENERATOR","Turbine Governor","Exciter","Stabilizer"]);
+    selectBusNum(1);
+    selectIDNum(1);
+  };
+
+
+  function getTableData(tableId) {
+    var tableRows = document.querySelectorAll(`#${tableId} tbody tr`);
+    var tableData = [];
+
+    tableRows.forEach(function(row) {
+      var cells = row.getElementsByTagName("td");
+      var rowData = {
+        col1: cells[0].textContent,
+        col2: cells[1].textContent,
+        col3: cells[2].textContent,
+        col4: cells[3].getElementsByTagName("input")[0].value,
+      };
+
+      tableData.push(rowData);
+  });
+
+  return tableData;
+}
+function getBusIDTableData() {
+  var tableRows = document.querySelectorAll("#busIDAdd tbody tr");
+  var tableData = [];
+
+  tableRows.forEach(function(row) {
+    var cells = row.getElementsByTagName("td");
+    var rowData = {
+      bus: cells[0].getElementsByTagName("select")[0].value,
+      id: cells[1].getElementsByTagName("select")[0].value
+    };
+
+    tableData.push(rowData);
+  });
+
+  return tableData;
+}
+
+
+function submitForm(event) {
+    event.preventDefault();
+
+    var formData = {};
+
+    formData.model = document.getElementById("modelSelect").value;
+    formData.busIDTable = getBusIDTableData();
+    formData.iconTable = getTableData("iconTable");
+    formData.conTable = getTableData("conTable");
+
+    var fileInput = document.querySelector("input[type='file']");
+    var file = fileInput.files[0];
+
+    // Create a new FormData object
+    var formDataUpload = new FormData();
+    formDataUpload.append("file", file);
+    formDataUpload.append("data", JSON.stringify(formData));
+
+    // Send the multipart form-data request
+    fetch("/table", {
+      method: "POST",
+      body: formDataUpload,
+      headers: {
+              "X-request-ID": "submit" // set the X-request-ID header
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Error uploading file and data");
+      }
+    })
+    .then(data => {
+      const redirectUrl = data.redirect_url;
+      window.location = redirectUrl;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+
+  </script>
+    </body>
+</html>

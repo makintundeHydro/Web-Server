@@ -1,0 +1,177 @@
+<!-- This is the page that shows up first when you want to create a new report. 
+  The Page includes a drop down box where you will choose the generating station.  -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="static\style.css">
+  <style>
+    header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 10px;
+    }
+
+    .logout-button {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #ff0000;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    .card {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .form-label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+
+    .form-submit {
+      background-color: #007bff;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="/logout" class="logout-button">Logout</a>
+  </header>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">Welcome to the PSSE Tool</h3>
+      <div>
+        <label for="location" class="form-label">Location:</label>
+        <select id="location">
+          <option disabled selected>Select a location</option>
+        </select>
+      </div>
+      <div>
+        <label for="generator-owner" class="form-label">Generator Owner:</label>
+        <input type="text" id="generator-owner" name="generator-owner" class="form-input" required>
+      </div>
+      <div>
+        <label for="consultant" class="form-label">Consultant:</label>
+        <input type="text" id="consultant" name="consultant" class="form-input" required>
+      </div>
+      <div>
+        <label for="initials" class="form-label">Initials (2 letters allowed):</label>
+        <input type="text" id="initials" name="initials" class="form-input" minlength="2" maxlength="2" required>
+      </div>
+      <div>
+        <label for="revision-date" class="form-label">Revision Date:</label>
+        <input type="date" id="revision-date" name="revision-date" class="form-input" required>
+      </div>
+      <div>
+        <label for="effective-date" class="form-label">Effective Date:</label>
+        <input type="date" id="effective-date" name="effective-date" class="form-input" required>
+      </div>
+      <div>
+        <label for="entry-type" class="form-label">Entry Type:</label>
+        <select id="entry-type" name="entry-type" class="form-input" required>
+        </select>
+      </div>
+      <div>
+        <button onclick="submitForm()" class="btn btn-primary">Next</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  var Locations = ["Brandon", "Dorsey", "Grand Rapids", "Great Falls", "Jenpeg", "Kelsey", "Kettle", "Limestone", "Long Spruce", "McArthur", "Pine Falls", "Point du Bois", "Selkirk", "Seven Sisters", "St Joseph", "St Leon", "Wuskwatim"];
+  var entry_type = JSON.parse('{{ access|tojson }}');
+  window.onload = function () {
+    var dropdown = document.getElementById("location");
+    var dropdown2 = document.getElementById("entry-type")
+    Locations.forEach(function (location) {
+      var option = document.createElement("option");
+      option.text = location;
+      option.value = location;
+      dropdown.appendChild(option);
+    });
+    entry_type.forEach(function (entry) {
+      var option = document.createElement("option");
+      option.text = entry;
+      option.value = entry;
+      dropdown2.appendChild(option);
+    })
+  };
+
+  function submitForm() {
+    var formData = new FormData();
+    var location_val = document.getElementById("location").value;
+    var revisionDate = new Date(document.getElementById("revision-date").value);
+    var effectiveDate = new Date(document.getElementById("effective-date").value);
+    var currentDate = new Date();
+
+    if (Locations.includes(location_val) && revisionDate < currentDate && effectiveDate < currentDate) {
+      formData.append("location", location_val);
+      formData.append("generator-owner", document.getElementById("generator-owner").value);
+      formData.append("consultant", document.getElementById("consultant").value);
+      formData.append("initials", document.getElementById("initials").value);
+      formData.append("revision-date", document.getElementById("revision-date").value);
+      formData.append("effective-date", document.getElementById("effective-date").value);
+      formData.append("entry-type", document.getElementById("entry-type").value);
+
+      fetch("/generation-station", {
+        method: "POST",
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => {
+          window.location = data.redirect_url;
+        });
+    } else {
+      var messageElement = document.createElement("p");
+      messageElement.textContent = "Please check the form properly.";
+      messageElement.style.position = "absolute";
+      messageElement.style.bottom = "10px";
+      messageElement.style.left = "10px";
+      messageElement.style.backgroundColor = "lightgray";
+      messageElement.style.padding = "10px";
+      messageElement.style.borderRadius = "5px";
+
+      var cardElement = document.querySelector(".card-body");
+      cardElement.appendChild(messageElement);
+
+      setTimeout(function () {
+        messageElement.remove();
+      }, 3000);
+    }
+  }
+
+
+</script>
+
+</html>

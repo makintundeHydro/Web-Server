@@ -1,0 +1,3136 @@
+{
+  "Location":["Brandon", "Dorsey", "Grand Rapids", "Great Falls", "Jenpeg", "Kelsey", "Kettle", "Limestone", "Long Spruce", "McArthur", "Pine Falls", "Point du Bois", "Selkirk", "Seven Sisters", "St Joseph", "St Leon", "Wuskwatim"],
+  "Model":  {
+        "Generator Models": {
+            "CBEST": {
+                "PlaceHolder": "'CBEST', ID,",
+                "con_number": 12,
+                "icon_number": 0
+            },
+            "CDSMS1": {
+                "PlaceHolder": "'CDSMS1', ID,",
+                "con_number": 30,
+                "icon_number": 8
+            },
+            "CGEN1": {
+                "PlaceHolder": "'CGEN1', ID,",
+                "con_number": 30,
+                "icon_number": 0
+            },
+            "CIMTR1": {
+                "PlaceHolder": "'CIMTR1', ID,",
+                "con_number": 12,
+                "icon_number": 0
+            },
+            "CIMTR2": {
+                "PlaceHolder": "'CIMTR2', ID,",
+                "con_number": 12,
+                "icon_number": 0
+            },
+            "CIMTR3": {
+                "PlaceHolder": "'CIMTR3', ID,",
+                "con_number": 13,
+                "icon_number": 0
+            },
+            "CIMTR4": {
+                "PlaceHolder": "'CIMTR4', ID,",
+                "con_number": 13,
+                "icon_number": 0
+            },
+            "CSMEST": {
+                "PlaceHolder": "'CSMEST', ID,",
+                "con_number": 20,
+                "icon_number": 1
+            },
+            "CSTATT": {
+                "PlaceHolder": "'CSTATT', ID,",
+                "con_number": 14,
+                "icon_number": 0
+            },
+            "CSVGN1": {
+                "PlaceHolder": "'CSVGN1', ID,",
+                "con_number": 10,
+                "icon_number": 0
+            },
+            "CSVGN3": {
+                "PlaceHolder": "'CSVGN3', ID,",
+                "con_number": 11,
+                "icon_number": 0
+            },
+            "CSVGN4": {
+                "PlaceHolder": "'CSVGN4', ID,",
+                "con_number": 11,
+                "icon_number": 1
+            },
+            "CSVGN5": {
+                "PlaceHolder": "'CSVGN5', ID,",
+                "con_number": 14,
+                "icon_number": 1
+            },
+            "CSVGN6": {
+                "PlaceHolder": "'CSVGN6', ID,",
+                "con_number": 21,
+                "icon_number": 1
+            },
+            "FRECHG": {
+                "PlaceHolder": "'FRECHG', IM, JBUS, JM,",
+                "con_number": 25,
+                "icon_number": 0
+            },
+            "GENCLS": {
+                "PlaceHolder": "'GENCLS', ID,",
+                "con_number": 2,
+                "icon_number": 0
+            },
+            "GENDCO": {
+                "PlaceHolder": "'GENDCO', ID,",
+                "con_number": 15,
+                "icon_number": 0
+            },
+            "GENROE": {
+                "PlaceHolder": "'GENROE', ID,",
+                "con_number": 14,
+                "icon_number": 0
+            },
+            "GENROU": {
+                "PlaceHolder": "'GENROU', ID,",
+                "con_number": 14,
+                "icon_number": 0,
+                "prop":{
+                    "con": [
+                        [
+                            "j",
+                            "D-Axis Opened Circuit Transient Time Constant",
+                            "T'do (> 0)",
+                            "s"
+                        ],
+                        [
+                            "j+1",
+                            "D-Axis Opened Circuit Sub-transient Time Constant",
+                            "T''do (> 0)",
+                            "s"
+                        ],
+                        [
+                            "j+2",
+                            "Q-Axis Opened Circuit Transient Time Constant",
+                            "T'qo (> 0)",
+                            "s"
+                        ],
+                        [
+                            "j+3",
+                            "Q-Axis Opened Circuit Sub-transient Time Constant",
+                            "T''qo (> 0)",
+                            "s"
+                        ],
+                        [
+                            "j+4",
+                            "Inertia",
+                            "H",
+                            "MW-s/MVA"
+                        ],
+                        [
+                            "j+5",
+                            "Speed Damping",
+                            "D",
+                            "pu"
+                        ],
+                        [
+                            "j+6",
+                            "D-Axis Synchronous Reactance",
+                            "Xd",
+                            "pu"
+                        ],
+                        [
+                            "j+7",
+                            "Q-Axis Synchronous Reactance",
+                            "Xq",
+                            "pu"
+                        ],
+                        [
+                            "j+8",
+                            "D-Axis Transient Reactance",
+                            "X'd",
+                            "pu"
+                        ],
+                        [
+                            "j+9",
+                            "Q-Axis Transient Reactance",
+                            "X'q",
+                            "pu"
+                        ],
+                        [
+                            "j+10",
+                            "D/Q-Axis Sub-transient Reactance",
+                            "X''d = X''q",
+                            "pu"
+                        ],
+                        [
+                            "j+11",
+                            "Leakage Reactance",
+                            "Xl",
+                            "pu"
+                        ],
+                        [
+                            "j+12",
+                            "Open Circuit Saturation Factor",
+                            "S(1.0)",
+                            "pu"
+                        ],
+                        [
+                            "j+13",
+                            "Open Circuit Saturation Factor",
+                            "S(1.2)",
+                            "pu"
+                        ]
+                    ],
+                    "icon": []
+                }
+            },
+            "GENSAE": {
+                "PlaceHolder": "'GENSAE', ID,",
+                "con_number": 12,
+                "icon_number": 0,
+                "prop":{
+                    "con": [
+                        [
+                            "j",
+                            "D-Axis Opened Circuit Transient Time Constant",
+                            "",
+                            "s"
+                        ],
+                        [
+                            "j+1",
+                            "D-Axis Opened Circuit Sub-transient Time Constant",
+                            "",
+                            "s"
+                        ],
+                        [
+                            "j+2",
+                            "Q-Axis Opened Circuit Sub-transient Time Constant",
+                            "",
+                            "s"
+                        ],
+                        [
+                            "j+3",
+                            "Inertia",
+                            "",
+                            "MW-s/MVA"
+                        ],
+                        [
+                            "j+4",
+                            "Speed Damping",
+                            "",
+                            "pu"
+                        ],
+                        [
+                            "j+5",
+                            "D-Axis Synchronous Reactance",
+                            "Xd",
+                            "pu"
+                        ],
+                        [
+                            "j+6",
+                            "Q-Axis Synchronous Reactance",
+                            "Xq",
+                            "pu"
+                        ],
+                        [
+                            "j+7",
+                            "D-Axis Transient Reactance",
+                            "X'd",
+                            "pu"
+                        ],
+                        [
+                            "j+8",
+                            "D/Q-Axis Sub-transient Reactance",
+                            "X''d = X''q",
+                            "pu"
+                        ],
+                        [
+                            "j+9",
+                            "Leakage Reactance",
+                            "Xl",
+                            "pu"
+                        ],
+                        [
+                            "j+10",
+                            "Open Circuit Saturation Factor",
+                            "S(1.0)",
+                            "pu"
+                        ],
+                        [
+                            "j+11",
+                            "Open Circuit Saturation Factor",
+                            "S(1.2)",
+                            "pu"
+                        ]
+                    ],
+                    "icon": []
+                }
+            },
+            "GENSAL": {
+                "PlaceHolder": "'GENSAL', ID,",
+                "con_number": 12,
+                "icon_number": 0,
+                "prop":{
+                    "con": [
+                        [
+                            "j",
+                            "D-Axis Opened Circuit Transient Time Constant",
+                            "T'do (> 0)",
+                            "s"
+                        ],
+                        [
+                            "j+1",
+                            "D-Axis Opened Circuit Sub-transient Time Constant",
+                            "T''do (> 0)",
+                            "s"
+                        ],
+                        [
+                            "j+2",
+                            "Q-Axis Opened Circuit Transient Time Constant",
+                            "T'qo (> 0)",
+                            "s"
+                        ],
+                        [
+                            "j+3",
+                            "Inertia",
+                            "H",
+                            "MW-s/MVA"
+                        ],
+                        [
+                            "j+4",
+                            "Speed Damping",
+                            "D",
+                            "pu"
+                        ],
+                        [
+                            "j+5",
+                            "D-Axis Synchronous Reactance",
+                            "Xd",
+                            "pu"
+                        ],
+                        [
+                            "j+6",
+                            "Q-Axis Synchronous Reactance",
+                            "Xq",
+                            "pu"
+                        ],
+                        [
+                            "j+7",
+                            "D-Axis Transient Reactance",
+                            "X'd",
+                            "pu"
+                        ],
+                        [
+                            "j+8",
+                            "D/Q-Axis Sub-transient Reactance",
+                            "X''d = X''q",
+                            "pu"
+                        ],
+                        [
+                            "j+9",
+                            "Leakage Reactance",
+                            "Xl",
+                            "pu"
+                        ],
+                        [
+                            "j+10",
+                            "Open Circuit Saturation Factor",
+                            "S(1.0)",
+                            "pu"
+                        ],
+                        [
+                            "j+111",
+                            "Open Circuit Saturation Factor",
+                            "S(1.2)",
+                            "pu"
+                        ]
+                    ],
+                    "icon": []    
+                }
+            },
+            "GENTPJ1": {
+                "PlaceHolder": "'GENTPJ1', ID,",
+                "con_number": 16,
+                "icon_number": 0
+            },
+            "GENTRA": {
+                "PlaceHolder": "'GENTRA', ID,",
+                "con_number": 9,
+                "icon_number": 0
+            },
+            "PLBVFU1": {
+                "PlaceHolder": "'USRMDL', ID, 'PLBVFU1', 1, 1, 3, 4, 3, 6, ",
+                "con_number": 9,
+                "icon_number": 0
+            }
+        },
+        "Compensator Models": {
+            "PLBVFU1": {
+                "PlaceHolder": "'USRMDL' ID 'CCOMP4U1' 2 0 6 7 0 5",
+                "con_number": 6,
+                "icon_number": 7
+            },
+            "COMP": {
+                "PlaceHolder": "'COMP', ID,",
+                "con_number": 1,
+                "icon_number": 0
+            },
+            "COMPCC": {
+                "PlaceHolder": "'COMPCC', ID, M",
+                "con_number": 4,
+                "icon_number": 0
+            },
+            "IEEEVC": {
+                "PlaceHolder": "'IEEEVC', ID, ",
+                "con_number": 2,
+                "icon_number": 0,
+                "prop":{
+                    "con": [
+                        [
+                            "j",
+                            "Resistive component of current compensation",
+                            "Rc",
+                            "pu"
+                        ],
+                        [
+                            "j+1",
+                            "Resistive component of current compensation",
+                            "Xc",
+                            "pu"
+                        ]
+                    ],
+                    "icon": []    
+                }
+            },
+            "REMCMP": {
+                "PlaceHolder": "'REMCMP', ID, ",
+                "con_number": 0,
+                "icon_number": 1
+            }
+        },
+        "Stabilizer Models": {
+            "BEPSST": {
+                "PlaceHolder": "'BEPSST', ID, ",
+                "con_number": 5,
+                "icon_number": 21
+            },
+            "IEE2ST": {
+                "PlaceHolder": "'IEE2ST', ID, ",
+                "con_number": 4,
+                "icon_number": 16
+            },
+            "IEEEST": {
+                "PlaceHolder": "'IEEEST', ID, ",
+                "con_number": 17,
+                "icon_number": 2,
+                "prop":{
+                    "con": [
+                        [
+                            "j",
+                            "Filter time constant",
+                            "A1",
+                            "s"
+                        ],
+                        [
+                            "j+1",
+                            "Filter time constant",
+                            "A2",
+                            "s"
+                        ],
+                        [
+                            "j+2",
+                            "Filter time constant",
+                            "A3",
+                            "s"
+                        ],
+                        [
+                            "j+3",
+                            "Filter time constant",
+                            "A4",
+                            "s"
+                        ],
+                        [
+                            "j+4",
+                            "Filter time constant",
+                            "A5",
+                            "s"
+                        ],
+                        [
+                            "j+5",
+                            "Filter time constant",
+                            "A6",
+                            "s"
+                        ],
+                        [
+                            "j+6",
+                            "Phase lead time constant",
+                            "T1",
+                            "s"
+                        ],
+                        [
+                            "j+7",
+                            "Phase lag time constant",
+                            "T2",
+                            "s"
+                        ],
+                        [
+                            "j+8",
+                            "Phase lead time constant",
+                            "T3",
+                            "s"
+                        ],
+                        [
+                            "j+9",
+                            "Phase lag time constant",
+                            "T4",
+                            "s"
+                        ],
+                        [
+                            "j+10",
+                            "Washout time constant",
+                            "T5",
+                            "s"
+                        ],
+                        [
+                            "j+11",
+                            "Washout time constant (>0)",
+                            "T6",
+                            "s"
+                        ],
+                        [
+                            "j+12",
+                            "Stabilizer gain",
+                            "KS",
+                            "pu Et-ref/pu Pe"
+                        ],
+                        [
+                            "j+13",
+                            "Output limits",
+                            "LSMAX",
+                            "pu"
+                        ],
+                        [
+                            "j+14",
+                            "Output limits",
+                            "LSMIN",
+                            "pu"
+                        ],
+                        [
+                            "j+15",
+                            "Limits (if equal zero, ignored)",
+                            "VCU",
+                            "pu"
+                        ],
+                        [
+                            "j+16",
+                            "Limits (if equal zero, ignored)",
+                            "VCL",
+                            "pu"
+                        ]
+                    ],
+                    "icon": [
+                        [
+                            "m",
+                            "First Stabilizer Input Code",
+                            "ICS1",
+                            "na"
+                        ],
+                        [
+                            "m+1",
+                            "First remote bus number",
+                            "REMBUS1",
+                            "N/A"
+                        ]
+                    ]    
+                }
+            },
+            "IVOST": {
+                "PlaceHolder": "'IVOST', ID, ",
+                "con_number": 21,
+                "icon_number": 0
+            },
+            "OSTB2T": {
+                "PlaceHolder": "'OSTB2T', ID, ",
+                "con_number": 20,
+                "icon_number": 0
+            },
+            "OSTB5T": {
+                "PlaceHolder": "'OSTB5T', ID, ",
+                "con_number": 20,
+                "icon_number": 0
+            },
+            "PSS1A": {
+                "PlaceHolder": "'IEEEST', ID, ",
+                "con_number": 17,
+                "icon_number": 2
+            },
+            "PSS2A": {
+                "PlaceHolder": "'PSS2A', ID, ",
+                "con_number": 6,
+                "icon_number": 17,
+                "prop":{
+                    "con": [
+                        [
+                            "m",
+                            "First stabilizer input code:",
+                            "ICS1",
+                            "na"
+                        ],
+                        [
+                            "m+1",
+                            "First remote bus number",
+                            "REMBUS1",
+                            "na"
+                        ],
+                        [
+                            "m+2",
+                            "Second stabilizer input code:",
+                            "ICS2",
+                            "na"
+                        ],
+                        [
+                            "m+3",
+                            "Second remote bus number",
+                            "REMBUS2",
+                            "na"
+                        ],
+                        [
+                            "m+4",
+                            "Ramp tracking filter",
+                            "M",
+                            "na"
+                        ],
+                        [
+                            "m+5",
+                            "Ramp tracking filter",
+                            "N",
+                            "na"
+                        ]
+                    ],
+                    "icon": [
+                        [
+                            "j",
+                            "Washout Time constant (>0) - Signal 1",
+                            "TW1",
+                            "s"
+                        ],
+                        [
+                            "j+2",
+                            "Lag Time Constant - Signal 1",
+                            "T6",
+                            "s"
+                        ],
+                        [
+                            "j+3",
+                            "Washout Time Constant (>0) - Signal 2",
+                            "TW3",
+                            "s"
+                        ],
+                        [
+                            "j+4",
+                            "Washout Time Constant - Signal 2",
+                            "TW4",
+                            "s"
+                        ],
+                        [
+                            "j+5",
+                            "Lag Time Constant - Signal 2",
+                            "T7",
+                            "s"
+                        ],
+                        [
+                            "j+6",
+                            "Gain - Signal 2",
+                            "KS2",
+                            "pu"
+                        ],
+                        [
+                            "j+7",
+                            "Gain - Signal 2",
+                            "KS3",
+                            "pu"
+                        ],
+                        [
+                            "j+8",
+                            "Ramp Tracking Filter Lead Time Constant",
+                            "T8",
+                            "s"
+                        ],
+                        [
+                            "j+9",
+                            "Ramp Tracking Filter Lag Time Constant (>0)",
+                            "T9",
+                            "s"
+                        ],
+                        [
+                            "j+10",
+                            "Stabilizer Gain",
+                            "KS1",
+                            "pu"
+                        ],
+                        [
+                            "j+11",
+                            "Lead Time Constant - Phase Comp. Block 1",
+                            "T1",
+                            "s"
+                        ],
+                        [
+                            "j+12",
+                            "Lag Time Constant  - Phase Comp. Block 1",
+                            "T2",
+                            "s"
+                        ],
+                        [
+                            "j+13",
+                            "Lead Time Constant - Phase Comp. Block 2",
+                            "T3",
+                            "s"
+                        ],
+                        [
+                            "j+14",
+                            "Lag Time Constant  - Phase Comp. Block 2",
+                            "T4",
+                            "s"
+                        ],
+                        [
+                            "j+15",
+                            "Stabilizer Output Maximum",
+                            "VSTMAX",
+                            "pu"
+                        ],
+                        [
+                            "j+16",
+                            "Stabilizer Output Minimum",
+                            "VSTMIN",
+                            "pu"
+                        ]
+                    ]
+                }
+            },
+            "PSS2B": {
+                "PlaceHolder": "'PSS2B', ID, ",
+                "con_number": 6,
+                "icon_number": 23
+            },
+            "PSS2CU1": {
+                "PlaceHolder": "'USRMDL' ID 'PSS2CU1' 3 0 6 29 19 5 ",
+                "con_number": 29,
+                "icon_number": 6
+            },
+            "PSS3B": {
+                "PlaceHolder": "'PSS3B', ID, ",
+                "con_number": 17,
+                "icon_number": 4
+            },
+            "PSS4B": {
+                "PlaceHolder": "'PSS4B', ID, ",
+                "con_number": 0,
+                "icon_number": 1
+            },
+            "PSS6CU1": {
+                "PlaceHolder": " 'USRMDL' ID 'PSS6CU1' 3 0 4 30 10 5",
+                "con_number": 30,
+                "icon_number": 4
+            },
+            "PSS7CU1": {
+                "PlaceHolder": "'USRMDL' ID 'PSS7CU1' 3 0 6 32 19 5",
+                "con_number": 32,
+                "icon_number": 6
+            },
+            "PTIST1": {
+                "PlaceHolder": "'PTIST1', ID, ",
+                "con_number": 12,
+                "icon_number": 0
+            },
+            "PTIST3": {
+                "PlaceHolder": "'PTIST3', ID, ",
+                "con_number": 31,
+                "icon_number": 4
+            },
+            "ST2CUT": {
+                "PlaceHolder": "'ST2CUT', ID, ",
+                "con_number": 16,
+                "icon_number": 4
+            },
+            "STAB1": {
+                "PlaceHolder": "'STAB1', ID, ",
+                "con_number": 7,
+                "icon_number": 0
+            },
+            "STAB2A": {
+                "PlaceHolder": "'STAB2A', ID, ",
+                "con_number": 8,
+                "icon_number": 0
+            },
+            "STAB3": {
+                "PlaceHolder": "'STAB3', ID, ",
+                "con_number": 5,
+                "icon_number": 0
+            },
+            "STAB4": {
+                "PlaceHolder": "'STAB4', ID, ",
+                "con_number": 11,
+                "icon_number": 0
+            },
+            "STABNI": {
+                "PlaceHolder": "'STABNI', ID, ",
+                "con_number": 5,
+                "icon_number": 0
+            },
+            "STBSVC": {
+                "PlaceHolder": "'STBSVC', ID, ",
+                "con_number": 6,
+                "icon_number": 12
+            },
+            "SYNAXBU1": {
+                "PlaceHolder": "'USRMDL' ID 'SYNAXBU1' 3 0 1 4 1 1",
+                "con_number": 4,
+                "icon_number": 1
+            }
+        },
+        "Minimum Excitation Limiter Models": {
+            "MNLEX1": {
+                "PlaceHolder": "'MNLEX1', ID, ",
+                "con_number": 6,
+                "icon_number": 0
+            },
+            "MNLEX2": {
+                "PlaceHolder": "'MNLEX2', ID, ",
+                "con_number": 7,
+                "icon_number": 0
+            },
+            "MNLEX3": {
+                "PlaceHolder": "'MNLEX3', ID, ",
+                "con_number": 7,
+                "icon_number": 0
+            },
+            "UEL1": {
+                "PlaceHolder": "'UEL1', ID, ",
+                "con_number": 15,
+                "icon_number": 0
+            },
+            "UEL2": {
+                "PlaceHolder": "'UEL2', ID, ",
+                "con_number": 38,
+                "icon_number": 3
+            },
+            "UEL2CU1": {
+                "PlaceHolder": "'USRMDL' ID 'UEL2CU1' 9 0 4 47 9 2 ",
+                "con_number": 45,
+                "icon_number": 4
+            }
+        },
+        "Macimum Excitation Limiter Models": {
+            "BASOELU2": {
+                "PlaceHolder": "'USRMDL' ID 'BASOELU2' 10 0 15 12 3 9",
+                "con_number": 12,
+                "icon_number": 15
+            },
+            "MAXEX1": {
+                "PlaceHolder": "'MAXEX1', ID,",
+                "con_number": 10,
+                "icon_number": 0
+            },
+            "MAXEX2": {
+                "PlaceHolder": "'MAXEX2', ID,",
+                "con_number": 10,
+                "icon_number": 1
+            },
+            "OEL2CU1": {
+                "PlaceHolder": "'USRMDL', ID, 'OEL2CU1' 10 0 2 41 8 8",
+                "con_number": 41,
+                "icon_number": 2
+            },
+            "OEL5CU1": {
+                "PlaceHolder": "'USRMDL' ID 'OEL5CU1' 10 0 3 27 6 3 ",
+                "con_number": 27,
+                "icon_number": 3
+            }
+        },
+        "Excitation System Models": {
+            "AC1C": {
+                "PlaceHolder": "'AC1C', ID,",
+                "con_number": 21,
+                "icon_number": 2
+            },
+            "AC2C": {
+                "PlaceHolder": "'AC2C', ID,",
+                "con_number": 23,
+                "icon_number": 2
+            },
+            "AC3C": {
+                "PlaceHolder": "'AC3C', ID,",
+                "con_number": 22,
+                "icon_number": 2
+            },
+            "AC4C": {
+                "PlaceHolder": "'AC4C', ID,",
+                "con_number": 10,
+                "icon_number": 2
+            },
+            "AC5C": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "AC6A": {
+                "PlaceHolder": "'AC6A', ID,",
+                "con_number": 21,
+                "icon_number": 0
+            },
+            "AC6C": {
+                "PlaceHolder": "'AC6C', ID,",
+                "con_number": 25,
+                "icon_number": 2
+            },
+            "AC6CU2": {
+                "PlaceHolder": "'USRMDL', ID, 'AC6CU2', 4, 0, 3, 25, 5, 2,",
+                "con_number": 25,
+                "icon_number": 3
+            },
+            "AC7B": {
+                "PlaceHolder": "'AC7B', ID,",
+                "con_number": 27,
+                "icon_number": 0
+            },
+            "AC7CU1": {
+                "PlaceHolder": "'USRMDL' ID 'AC7CU1' 4 0 6 33 6 4 ",
+                "con_number": 33,
+                "icon_number": 6
+            },
+            "AC8B": {
+                "PlaceHolder": "'AC8B', ID,",
+                "con_number": 0,
+                "icon_number": 21
+            },
+            "AC8BBU2": {
+                "PlaceHolder": "'USRMDL' ID 'AC8BBU2' 4 0 5 35 7 9",
+                "con_number": 35,
+                "icon_number": 5
+            },
+            "AC8CU1": {
+                "PlaceHolder": "'USRMDL' ID 'AC8CU1' 4 0 5 27 5 3 ",
+                "con_number": 27,
+                "icon_number": 5
+            },
+            "AC9CU1": {
+                "PlaceHolder": "'USRMDL' ID 'AC9CU1' 4 0 4 42 7 3",
+                "con_number": 42,
+                "icon_number": 4
+            },
+            "AC11CU1": {
+                "PlaceHolder": "'USRMDL' ID 'AC11CU1' 4 0 5 36 9 0 ",
+                "con_number": 36,
+                "icon_number": 5
+            },
+            "BBSEX1": {
+                "PlaceHolder": "'BBSEX1', ID, ",
+                "con_number": 11,
+                "icon_number": 0
+            },
+            "BUDCZT": {
+                "PlaceHolder": "'BUDCZT', ID, ",
+                "con_number": 11,
+                "icon_number": 0
+            },
+            "CELIN": {
+                "PlaceHolder": "'CELIN', ID, ",
+                "con_number": 44,
+                "icon_number": 0
+            },
+            "DC1C": {
+                "PlaceHolder": "'DC1C', ID, ",
+                "con_number": 17,
+                "icon_number": 2
+            },
+            "DC2C": {
+                "PlaceHolder": "'DC2C', ID, ",
+                "con_number": 17,
+                "icon_number": 2
+            },
+            "DC3A": {
+                "PlaceHolder": "'DC3A', ID, ",
+                "con_number": 12,
+                "icon_number": 0
+            },
+            "DC4B": {
+                "PlaceHolder": "'DC4B', ID,",
+                "con_number": 18,
+                "icon_number": 2
+            },
+            "DC4CU1": {
+                "PlaceHolder": "'USRMDL', ID, 'DC4CU1', 4, 0, 4, 24, 6, 6,",
+                "con_number": 24,
+                "icon_number": 4
+            },
+            "EMAC1T": {
+                "PlaceHolder": "'EMAC1T', ID,",
+                "con_number": 23,
+                "icon_number": 0
+            },
+            "ESAC1A": {
+                "PlaceHolder": "'ESAC1A', ID,",
+                "con_number": 19,
+                "icon_number": 0
+            },
+            "ESAC2A": {
+                "PlaceHolder": "'ESAC2A', ID,",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ESAC3A": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ESAC4A": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ESAC5A": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ESAC6A": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ESAC8B": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ESDC1A": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ESDC2A": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ESST1A": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0,
+                "prop":{
+                    "icon": [
+                        [
+                            "m",
+                            "Under Excitation Limiter Input (1,2 or 3)",
+                            "UEL",
+                            "na"
+                        ],
+                        [
+                            "m+1",
+                            "Other Signal Input (1 or 2)",
+                            "VOTHSG",
+                            "na"
+                        ]
+                    ],
+                    "con": [
+                        [
+                            "j",
+                            "Regulator Input Filter Time Constant",
+                            "TR",
+                            "s"
+                        ],
+                        [
+                            "j+1",
+                            "Maximum Voltage Error (Regulator Input)",
+                            "VIMAX",
+                            "pu"
+                        ],
+                        [
+                            "j+2",
+                            "Minimum Voltage Error (Regulator Input)",
+                            "VIMIN",
+                            "pu"
+                        ],
+                        [
+                            "j+3",
+                            "Regulator Numerator (Lead) Time Constant",
+                            "TC",
+                            "s"
+                        ],
+                        [
+                            "j+4",
+                            "Regulator Denominator (Lag) Time Constant",
+                            "TB",
+                            "s"
+                        ],
+                        [
+                            "j+5",
+                            "Regulator Numerator (Lead) Time Constant",
+                            "TC1",
+                            "s"
+                        ],
+                        [
+                            "j+6",
+                            "Regulator Denominator (Lag) Time Constant",
+                            "TB1",
+                            "s"
+                        ],
+                        [
+                            "j+7",
+                            "Voltage Regulator Gain",
+                            "KA",
+                            "pu"
+                        ],
+                        [
+                            "j+8",
+                            "Voltage Regulator Time Constant",
+                            "TA",
+                            "s"
+                        ],
+                        [
+                            "j+9",
+                            "Maximum Regulator Output",
+                            "VAMAX",
+                            "pu"
+                        ],
+                        [
+                            "j+10",
+                            "Minimum Regulator Output ",
+                            "VAMIN",
+                            "pu"
+                        ],
+                        [
+                            "j+11",
+                            "Maximum Exciter Output",
+                            "VRMAX",
+                            "pu"
+                        ],
+                        [
+                            "j+12",
+                            "Minimum Exciter Output",
+                            "VRMIN",
+                            "pu"
+                        ],
+                        [
+                            "j+13",
+                            "Rectifier Loading Factor Proportional to Commutating Reactance",
+                            "KC",
+                            "pu"
+                        ],
+                        [
+                            "j+14",
+                            "Rate Feedback Gain",
+                            "KF",
+                            "pu"
+                        ],
+                        [
+                            "j+15",
+                            "Rate Feedback Time Constant (>0)",
+                            "TF",
+                            "s"
+                        ],
+                        [
+                            "j+16",
+                            "Exciter Output Current Limiter Gain",
+                            "KLR",
+                            "pu"
+                        ],
+                        [
+                            "j+17",
+                            "Exciter Output Current Limit Reference",
+                            "ILR",
+                            "pu"
+                        ]
+                    ]
+                }
+            },
+            "ESST2A": {
+                "PlaceHolder": "'ESST2A', ID,",
+                "con_number": 13,
+                "icon_number": 0
+            },
+            "ESST3A": {
+                "PlaceHolder": "'ESST3A', ID,",
+                "con_number": 21,
+                "icon_number": 0
+            },
+            "ESST4B": {
+                "PlaceHolder": "'ESST4B', ID,",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ESURRY": {
+                "PlaceHolder": "'ESURRY', ID,",
+                "con_number": 20,
+                "icon_number": 0
+            },
+            "EX2000": {
+                "PlaceHolder": "'EX2000', ID,",
+                "con_number": 45,
+                "icon_number": 2
+            },
+            "EXAC1": {
+                "PlaceHolder": "'EXAC1', ID,",
+                "con_number": 17,
+                "icon_number": 0
+            },
+            "EXAC1A": {
+                "PlaceHolder": "'EXAC1A', ID,",
+                "con_number": 17,
+                "icon_number": 0
+            },
+            "EXAC2": {
+                "PlaceHolder": "'EXAC2', ID,",
+                "con_number": 23,
+                "icon_number": 0
+            },
+            "EXAC3": {
+                "PlaceHolder": "'EXAC3', ID,",
+                "con_number": 22,
+                "icon_number": 0
+            },
+            "EXAC4": {
+                "PlaceHolder": "'EXAC4', ID,",
+                "con_number": 10,
+                "icon_number": 0
+            },
+            "EXBAS": {
+                "PlaceHolder": "'EXBAS', ID,",
+                "con_number": 21,
+                "icon_number": 0
+            },
+            "EXDC2": {
+                "PlaceHolder": "'EXDC2', ID,",
+                "con_number": 16,
+                "icon_number": 0
+            },
+            "EXELI": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "EXNEBB": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "EXNI": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "EXPIC1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "EXST1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "EXST2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "EXST2A": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "EXST3": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEET1": {
+                "PlaceHolder": "'IEEET1', ID, ",
+                "con_number": 14,
+                "icon_number": 0,
+                "prop":{
+                    "con": [
+                        [
+                            "j",
+                            "Terminal voltage transducer time constant",
+                            "TR",
+                            "sec"
+                        ],
+                        [
+                            "j+1",
+                            "AVR gain",
+                            "KA",
+                            "sec"
+                        ],
+                        [
+                            "j+2",
+                            "AVR time constant",
+                            "TA",
+                            "sec"
+                        ],
+                        [
+                            "j+3",
+                            "Positive exciter output limit (ceiling)",
+                            "VRMAX or zero",
+                            "sec"
+                        ],
+                        [
+                            "j+4",
+                            "Negative exciter output limit (ceiling)",
+                            "VRMIN",
+                            "sec"
+                        ],
+                        [
+                            "j+5",
+                            "Main exciter field proportional constant",
+                            "KE or zero",
+                            "sec"
+                        ],
+                        [
+                            "j+6",
+                            "Main exciter field time constant (>0)",
+                            "TE",
+                            "sec"
+                        ],
+                        [
+                            "j+7",
+                            "Exciter feedback gain",
+                            "KF",
+                            "sec"
+                        ],
+                        [
+                            "j+8",
+                            "Exciter feedback time constant (>0)",
+                            "TF",
+                            "sec"
+                        ],
+                        [
+                            "j+9",
+                            "Switch",
+                            "Switch=0",
+                            "sec"
+                        ],
+                        [
+                            "j+10",
+                            "Exciter Output Voltage For Saturation Factor SE(E1)",
+                            "E1",
+                            "sec"
+                        ],
+                        [
+                            "j+11",
+                            "Exciter Saturation Factor At Exciter Output Voltage E1",
+                            "SE(E1)",
+                            "sec"
+                        ],
+                        [
+                            "j+12",
+                            "Exciter Output Voltage For Saturation Factor SE(E2)",
+                            "E2",
+                            "sec"
+                        ],
+                        [
+                            "j+13",
+                            "Exciter Saturation Factor At Exciter Output Voltage E2",
+                            "SE(E2)",
+                            "sec"
+                        ]
+                    ],
+                    "icon": []
+                } 
+            },
+            "IEEET2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEET3": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEET4": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEET5": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEEX1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEEX2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEEX3": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEEX4": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEET1A": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEET1B": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEET5A": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEX2A": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IVOEX": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "OEX12T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "OEX3T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "REXSY1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "REXSYS": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SCRX": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SEXS": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ST1C": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ST4CU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ST5B": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ST5C": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ST6B": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ST6CU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ST7B": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ST7C": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ST8CU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ST9CU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ST10CU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "URHIDT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "URST5T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Turbine-Governor Models": {
+            "BBGOV1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CRCMGV": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "DEGOV": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "DEGOV1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "DEGOV1DU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "GAST": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "GAST2A": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "GAST2ADU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "GASTDU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "GASTWD": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "GASTWDDU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "GGOV1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "GGOV1DU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "GOVSTEAMEUU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "HYGOV": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "HYGOV2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0,
+                "prop":{
+                    "con": [
+                        [
+                            "j",
+                            "Proportional speed gain",
+                            "KP",
+                            "ratio"
+                        ],
+                        [
+                            "j+1",
+                            "Integral speed gain",
+                            "KI",
+                            "1/s"
+                        ],
+                        [
+                            "j+2",
+                            "Governor gain",
+                            "KA",
+                            "ratio"
+                        ],
+                        [
+                            "j+3",
+                            "Governor time constant",
+                            "T1",
+                            "s"
+                        ],
+                        [
+                            "j+4",
+                            "Governor lead time constant",
+                            "T2",
+                            "s"
+                        ],
+                        [
+                            "j+5",
+                            "Governor time constant (>0)",
+                            "T3",
+                            "s"
+                        ],
+                        [
+                            "j+6",
+                            "Governor lag time constant (>0)",
+                            "T4",
+                            "s"
+                        ],
+                        [
+                            "j+7",
+                            "Turbine time constant",
+                            "T5",
+                            "s"
+                        ],
+                        [
+                            "j+8",
+                            "Turbine time constant (>0)",
+                            "T6",
+                            "s"
+                        ],
+                        [
+                            "j+9",
+                            "Reset time constant (>0)",
+                            "TR",
+                            "s"
+                        ],
+                        [
+                            "j+10",
+                            "Temporary droop",
+                            "r",
+                            "pu speed / pu gate"
+                        ],
+                        [
+                            "j+11",
+                            "Permanent droop",
+                            "R",
+                            "pu speed / pu gate"
+                        ],
+                        [
+                            "j+12",
+                            "Servomotor rate limits",
+                            "±VGMAX",
+                            "pu gate/s"
+                        ],
+                        [
+                            "j+13",
+                            "Maximum gate position",
+                            "GMAX",
+                            "pu gate"
+                        ],
+                        [
+                            "j+14",
+                            "Minimum gate position",
+                            "GMIN",
+                            "pu gate"
+                        ],
+                        [
+                            "j+15",
+                            "Maximum turbine output",
+                            "PMAX",
+                            "pu Sbase"
+                        ]
+                    ],
+                    "icon": []
+                }
+            },
+            "HYGOV2DU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "HYGOVDU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "HYGOVM": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "HYGOVR1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "HYGOVT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "HYG3U1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "H6EU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEEG1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEEG1SDU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEEG2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEEG3": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEEEG3DU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEESGO": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0,
+                "con": [
+                    [
+                        "j",
+                        "Controller Lag",
+                        "T1",
+                        "s"
+                    ],
+                    [
+                        "j+1",
+                        "Controller Lead Compensation",
+                        "T2",
+                        "s"
+                    ],
+                    [
+                        "j+2",
+                        "Governor Lag (> 0)",
+                        "T3",
+                        "s"
+                    ],
+                    [
+                        "j+3",
+                        "Delay Due To Steam Inlet Volumes",
+                        "T4",
+                        "s"
+                    ],
+                    [
+                        "j+4",
+                        "Reheater Delay",
+                        "T5",
+                        "s"
+                    ],
+                    [
+                        "j+5",
+                        "Turbine, pipe, hood Delay",
+                        "T6",
+                        "s"
+                    ],
+                    [
+                        "j+6",
+                        "1/Per Unit Regulation",
+                        "K1",
+                        "1/pu"
+                    ],
+                    [
+                        "j+7",
+                        "Fraction",
+                        "K2",
+                        "na"
+                    ],
+                    [
+                        "j+8",
+                        "Fraction",
+                        "K3",
+                        "na"
+                    ],
+                    [
+                        "j+9",
+                        "Upper Power Limit",
+                        "PMAX",
+                        "pu"
+                    ],
+                    [
+                        "j+10",
+                        "Lower Power Limit",
+                        "PMIN",
+                        "pu"
+                    ]
+                ],
+                "icon": []
+            },
+            "IEESGODU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IVOGO": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "PIDGOV": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0,
+                "prop":{
+                    "con": [
+                        [
+                            "j",
+                            "Permanent droop",
+                            "Rperm",
+                            "pu"
+                        ],
+                        [
+                            "j+1",
+                            "Speed detector time constant",
+                            "Treg",
+                            "s"
+                        ],
+                        [
+                            "j+2",
+                            "Proportional gain",
+                            "Kp",
+                            "pu/s"
+                        ],
+                        [
+                            "j+3",
+                            "Reset gain",
+                            "Ki",
+                            "pu/s"
+                        ],
+                        [
+                            "j+4",
+                            "Derivative gain",
+                            "Kd",
+                            "pu"
+                        ],
+                        [
+                            "j+5",
+                            "Controller time constant (>0)",
+                            "Ta",
+                            "s"
+                        ],
+                        [
+                            "j+6",
+                            "Gate servo time constant (>0)",
+                            "Tb",
+                            "s"
+                        ],
+                        [
+                            "j+7",
+                            "Turbine damping factor",
+                            "Dturb",
+                            "pu"
+                        ],
+                        [
+                            "j+8",
+                            "Gate Opening at speed no load",
+                            "Go",
+                            "pu"
+                        ],
+                        [
+                            "j+9",
+                            "1st Intermediate gate opening",
+                            "G1",
+                            "pu"
+                        ],
+                        [
+                            "j+10",
+                            "Power at gate opening G1",
+                            "P1",
+                            "pu"
+                        ],
+                        [
+                            "j+11",
+                            "2nd Intermediate gate opening",
+                            "G2",
+                            "pu"
+                        ],
+                        [
+                            "j+12",
+                            "Power at gate opening G2",
+                            "P2",
+                            "pu"
+                        ],
+                        [
+                            "j+13",
+                            "Power at full opened gate",
+                            "P3",
+                            "pu"
+                        ],
+                        [
+                            "j+14",
+                            "Maximum gate opening",
+                            "Gmax",
+                            "pu"
+                        ],
+                        [
+                            "j+15",
+                            "Minimum gate opening",
+                            "Gmin",
+                            "pu"
+                        ],
+                        [
+                            "j+16",
+                            "Multiplying factor (>0)",
+                            "Atw",
+                            "pu"
+                        ],
+                        [
+                            "j+17",
+                            "Water inertia time constant (>0)",
+                            "Tw",
+                            "s"
+                        ],
+                        [
+                            "j+18",
+                            "Minimum gate opening velocity",
+                            "Velmax",
+                            "pu/s"
+                        ],
+                        [
+                            "j+19",
+                            "Minimum gate closing velocity",
+                            "Velmin",
+                            "pu/s"
+                        ]
+                    ],
+                    "icon": []    
+                }
+            },
+            "PIDGOVDU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "PWTBD1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SGT2EU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SGT8HMU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SGT8HSU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SITGTU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SHAF25": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "TGOV1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "TGOV1DU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "TGOV2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "TGOV3": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "TGOV3DU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "TGOV4": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "TGOV5": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "TURCZT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "TWDM1T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "TWDM2T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "URCSCT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "URGS3T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WEHGOV": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0,
+                "prop":{
+                    "icon": [
+                        [
+                            "m",
+                            "Feedback Signal \n0 = Electrical Power Feedback \n1 = None",
+                            "",
+                            "na"
+                        ]
+                    ],
+                    "con": [
+                        [
+                            "j",
+                            "Permanent Droop (Gate Position)",
+                            "R-PERM-GATE",
+                            "pu speed / pu gate"
+                        ],
+                        [
+                            "j+1",
+                            "Permanent Droop (Electrical Power)",
+                            "R-PERM-PE",
+                            "pu speed / pu MVA"
+                        ],
+                        [
+                            "j+2",
+                            "Electrical Power Feedback Time Constant",
+                            "TPE",
+                            "s"
+                        ],
+                        [
+                            "j+3",
+                            "Proportional Gain",
+                            "KP",
+                            "pu"
+                        ],
+                        [
+                            "j+4",
+                            "Integral Gain",
+                            "KI",
+                            "pu/s"
+                        ],
+                        [
+                            "j+5",
+                            "Derivative Gain",
+                            "KD",
+                            "pu.s"
+                        ],
+                        [
+                            "j+6",
+                            "Derivative Controller Time Constant",
+                            "TD",
+                            "s"
+                        ],
+                        [
+                            "j+7",
+                            "Pilot Valve Time Constant",
+                            "TP",
+                            "s"
+                        ],
+                        [
+                            "j+8",
+                            "Distribution Valve Time Constant",
+                            "TDV",
+                            "s"
+                        ],
+                        [
+                            "j+9",
+                            "Gate Servomotor Time Constant",
+                            "Tg",
+                            "s"
+                        ],
+                        [
+                            "j+10",
+                            "Maximum Gate Opening Rate (>0)",
+                            "GTMXOP",
+                            "pu/s"
+                        ],
+                        [
+                            "j+11",
+                            "Maximum Gate Closing Rate (<0)",
+                            "GTMXCL",
+                            "pu/s"
+                        ],
+                        [
+                            "j+12",
+                            "Maximum Gate Opening",
+                            "GMAX",
+                            "pu"
+                        ],
+                        [
+                            "j+13",
+                            "Minimum Gate Opening",
+                            "GMIN",
+                            "pu"
+                        ],
+                        [
+                            "j+14",
+                            "Turbine Damping",
+                            "DTURB",
+                            "pu power / pu speed"
+                        ],
+                        [
+                            "j+15",
+                            "Water Starting Time",
+                            "TW",
+                            "s"
+                        ],
+                        [
+                            "j+16",
+                            "Speed Deadband",
+                            "DBAND",
+                            "pu"
+                        ],
+                        [
+                            "j+17",
+                            "Pilot Valve Variable",
+                            "DPV",
+                            "pu"
+                        ],
+                        [
+                            "j+18",
+                            "Integral Controller Variable",
+                            "DICN",
+                            "pu"
+                        ],
+                        [
+                            "j+19",
+                            "Gate Position 1",
+                            "GATE1",
+                            "pu"
+                        ],
+                        [
+                            "j+20",
+                            "Gate Position 2",
+                            "GATE2",
+                            "pu"
+                        ],
+                        [
+                            "j+21",
+                            "Gate Position 3",
+                            "GATE3",
+                            "pu"
+                        ],
+                        [
+                            "j+22",
+                            "Gate Position 4",
+                            "GATE4",
+                            "pu"
+                        ],
+                        [
+                            "j+23",
+                            "Gate Position 5",
+                            "GATE5",
+                            "pu"
+                        ],
+                        [
+                            "j+24",
+                            "Water Flow Rate at Gate Position 1",
+                            "FLOW GATE1",
+                            "pu"
+                        ],
+                        [
+                            "j+25",
+                            "Water Flow Rate at Gate Position 2",
+                            "FLOW GATE2",
+                            "pu"
+                        ],
+                        [
+                            "j+26",
+                            "Water Flow Rate at Gate Position 3",
+                            "FLOW GATE3",
+                            "pu"
+                        ],
+                        [
+                            "j+27",
+                            "Water Flow Rate at Gate Position 4",
+                            "FLOW GATE4",
+                            "pu"
+                        ],
+                        [
+                            "j+28",
+                            "Water Flow Rate at Gate Position 5",
+                            "FLOW GATE5",
+                            "pu"
+                        ],
+                        [
+                            "j+29",
+                            "Water Flow Rate 1",
+                            "FLOW P1",
+                            "pu"
+                        ],
+                        [
+                            "j+30",
+                            "Water Flow Rate 2",
+                            "FLOW P2",
+                            "pu"
+                        ],
+                        [
+                            "j+31",
+                            "Water Flow Rate 3",
+                            "FLOW P3",
+                            "pu"
+                        ],
+                        [
+                            "j+32",
+                            "Water Flow Rate 4",
+                            "FLOW P4",
+                            "pu"
+                        ],
+                        [
+                            "j+33",
+                            "Water Flow Rate 5",
+                            "FLOW P5",
+                            "pu"
+                        ],
+                        [
+                            "j+34",
+                            "Water Flow Rate 6",
+                            "FLOW P6",
+                            "pu"
+                        ],
+                        [
+                            "j+35",
+                            "Water Flow Rate 7",
+                            "FLOW P7",
+                            "pu"
+                        ],
+                        [
+                            "j+36",
+                            "Water Flow Rate 8",
+                            "FLOW P8",
+                            "pu"
+                        ],
+                        [
+                            "j+37",
+                            "Water Flow Rate 9",
+                            "FLOW P9",
+                            "pu"
+                        ],
+                        [
+                            "j+38",
+                            "Water Flow Rate 10",
+                            "FLOW P10",
+                            "pu"
+                        ],
+                        [
+                            "j+39",
+                            "Mechanical Power at Water Flow Rate 1",
+                            "PMECH1",
+                            "pu"
+                        ],
+                        [
+                            "j+40",
+                            "Mechanical Power at Water Flow Rate 2",
+                            "PMECH2",
+                            "pu"
+                        ],
+                        [
+                            "j+41",
+                            "Mechanical Power at Water Flow Rate 3",
+                            "PMECH3",
+                            "pu"
+                        ],
+                        [
+                            "j+42",
+                            "Mechanical Power at Water Flow Rate 4",
+                            "PMECH4",
+                            "pu"
+                        ],
+                        [
+                            "j+43",
+                            "Mechanical Power at Water Flow Rate 5",
+                            "PMECH5",
+                            "pu"
+                        ],
+                        [
+                            "j+44",
+                            "Mechanical Power at Water Flow Rate 6",
+                            "PMECH6",
+                            "pu"
+                        ],
+                        [
+                            "j+45",
+                            "Mechanical Power at Water Flow Rate 7",
+                            "PMECH7",
+                            "pu"
+                        ],
+                        [
+                            "j+46",
+                            "Mechanical Power at Water Flow Rate 8",
+                            "PMECH8",
+                            "pu"
+                        ],
+                        [
+                            "j+47",
+                            "Mechanical Power at Water Flow Rate 9",
+                            "PMECH9",
+                            "pu"
+                        ],
+                        [
+                            "j+48",
+                            "Mechanical Power at Water Flow Rate 10",
+                            "PMECH10",
+                            "pu"
+                        ]
+                    ]
+        
+                }
+            },
+            "WESGOV": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WESGOVDU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WPIDHY": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WPIDHYDU": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WSHYDD": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WSHYGP": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WSIEG1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Turbine Load Controller Models": {
+            "LCFB1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Load Characteristic Models": {
+            "ACMTBLU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ACMTOWU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ACMTZNU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ACMTARU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "ACMTALU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIM5BL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIM5OW": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIM5ZN": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIM5AR": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIM5AL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIM6BL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIM6OW": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIM6ZN": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIM6AR": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIM6AL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIMWBL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIMWOW": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIMWZN": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIMWAR": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CIMWAL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CLODBL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CLODOW": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CLODZN": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CLODAR": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CLODAL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CMLDBLU2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CMLDOWU2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CMLDZNU2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CMLDARU2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CMLDALU2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CMLDBLDGU2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CMLDZNDGU2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CMLDARDGU2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CMLDALDGU2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "EXTLBL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "EXTLOW": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "EXTLZN": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "EXTLAR": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "EXTLAL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEELBL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEELOW": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEELZN": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEELAR": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "IEELAL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "LDFRBL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "LDFROW": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "LDFRZN": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "LDFRAR": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "LDFRAL": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Auxiliary-Signal Models": {
+            "CHAAUT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CPAAUT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "DCCAUT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "DCVRFT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "FCTAXBU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "HVDCAT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "PAUX1T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "PAUX2T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "RBKELT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "RUNBKT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SQBAUT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Two-Terminal dc Line Models": {
+            "CDC1T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CDC4T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CDC6T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CDC6TA": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CDC7T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CDCABT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CEEL2T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CEELRIT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CEELT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CHIGATT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CHVDC2U1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CMDWAST": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CMDWS2T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CMFORDT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Multi-Terminal dc Line Models": {
+            "MTDC1T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "MTDC2T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "MTDC3T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "VSC dc Line Models": {
+            "HVDCPL1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "VSCDCT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "FACTS Device Models": {
+            "CSTCNT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SVSMO3T2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Generic Renewable Generator Models": {
+            "DERAU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "PVGU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "REGCA1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "REGCAU2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "REGCBU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT1G1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT2G1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT3G1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT3G2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT4G1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT4G2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Generic Renewable Electrical Control Models": {
+            "PVEU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "REECA1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "REECB1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "REECCU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "REECDU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT2E1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT3E1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT4E1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT4E2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Generic Renewable Drive Train Models": {
+            "PANELU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT12T1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT3T1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WTDTA1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Generic Renewable Pitch Control Models": {
+            "IRRADU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT3P1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WTPTA1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Generic Renewable Aerodynamic Models": {
+            "WT12A1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WT12A1U_B": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "WTARA1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Generic Renewable Torque Control Models": {
+            "WTTQA1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Generic Renewable Plant Control Models": {
+            "REAX4BU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "REAX3BU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "REPCA1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "REPCTA1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Switched Shunt Models": {
+            "ABBSVC1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CHSVCT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "CSSCST": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SVSMO1T2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SVSMO2T2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SVSMO2U2": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "SWSHNT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Branch Device Models": {
+            "CRANIT": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Machine and Wind Machine Protection Models": {
+            "LOEXR1T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "MCREPWU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "NRCGP3U": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "VPERHZU1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Two-winding Transformer Device Models": {
+            "OLPS1T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "OLTC1T": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            },
+            "VFT1": {
+                "PlaceHolder": "",
+                "con_number": 0,
+                "icon_number": 0
+            }
+        },
+        "Three-winding Transformer Device Models": {
+            "OLPS3T": {
+                "PlaceHolder": "'OLPS3T',JBUS,KBUS,ID,",
+                "con_number": 3,
+                "icon_number": 0
+            },
+            "OLTC3T": {
+                "PlaceHolder": ",'OLTC3T',JBUS,KBUS,ID,",
+                "con_number": 3,
+                "icon_number": 0
+            }
+        },
+        "busOtherModels": {
+            "PLNTBU1": {
+                "PlaceHolder": "'USRBUS', 'PLNTBU1', 504, 0, 7, 28, 7, 15, ",
+                "con_number": 28,
+                "icon_number": 7
+            },
+            "GetBusPhsVLTU": {
+                "PlaceHolder": "'USRBUS' 'GetBusPhsVLTU' 504 2 3 0 0 6",
+                "con_number": 0,
+                "icon_number": 3
+            },
+            "GetBusSeqVLTU": {
+                "PlaceHolder": "'USRBUS' 'GetBusSeqVLTU' 504 2 3 0 0 6",
+                "con_number": 0,
+                "icon_number": 3
+            }
+        },
+        "switchedShuntOtherModels": {
+            "SWSAXBU1": {
+                "PlaceHolder": "'USRSWS' 'SWSAXBU1' 510 0 1 4 1 2",
+                "con_number": 4,
+                "icon_number": 1
+            }
+        }
+    }
+}

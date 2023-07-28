@@ -1,0 +1,87 @@
+.card {
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: fit-content;
+    margin-bottom: 20px;
+  }
+
+  /* h1 {
+    text-align: center;
+  } */
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table-heading {
+    margin-bottom: 10px;
+  }
+  
+  .generator-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .generator-heading {
+    margin-right: 10px;
+  }
+  
+  select {
+    flex: 1;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+select {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }

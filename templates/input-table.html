@@ -1,0 +1,359 @@
+<!-- This is the HTML for Models Table -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Model</title>
+    <link rel="stylesheet" href="static/specialTables.css">
+    <style>
+      th,button {
+          font-size: 10px;
+      }
+
+      h1,h2 {
+          font-size: 16px;
+      }
+      header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 10px;
+    }
+
+    .logout-button {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #ff0000;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/logout" class="logout-button">Logout</a>
+    </header>
+    <h1 id = "header"></h1>
+    <div class="card">
+        <h2 class="table-heading">For Machine at:</h2>
+        <table id="busIDAdd">
+          <thead>
+            <tr>
+              <th>Bus</th>
+              <th>ID</th>
+              <th>Add Bus</th>
+            </tr>
+          </thead>
+          <tbody id = "rows">
+            <tr id="row1">
+              <td><select name="ToBusNum"></select></td>
+              <td><select name="ID"></select></td>
+              <td><button class="btn btn-primary" onclick="addBusID()">Add</button></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    
+    <div id="iconTable">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">ICON</th>
+                    <th scope="col">DESCRIPTION</th>
+                    <th scope="col">PARAMETER</th>
+                    <th scope="col">VALUE</th>
+                    <th scope="col">UNITS</th>
+                </tr>
+            </thead>
+            <tbody  id = "rows">
+                <tr>
+                    <td></td><td></td><td></td><td><input required type="decimal" ></td><td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="conTable">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">CON</th>
+                    <th scope="col">DESCRIPTION</th>
+                    <th scope="col">PARAMETER</th>
+                    <th scope="col">VALUE</th>
+                    <th scope="col">UNITS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td></td><td></td><td></td><td><input required type="decimal"  ></td><td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="card">
+        <h1>Upload Model</h1>
+        <input type="file" accept="image/*">
+    </div>
+
+    <div class="button-container">
+        <button onclick="newTable()"  class="btn btn-primary">New Table</button>
+        <button onclick="submitForm(event)" class="btn btn-primary">Submit</button>
+    </div>
+    
+    <script>
+        var num = 1
+        var busNumbersData = JSON.parse('{{ busNumbers|tojson }}');         //This is the JSON passed from the Flask server. 
+        var list = JSON.parse('{{ list|tojson }}')                          //This is the JSON passed from the Flask server. 
+        var name = JSON.parse('{{ name|tojson }}')                      //This is the JSON passed from the Flask server. 
+        var model = JSON.parse('{{ model |tojson }}') 
+
+        // addBusID() : The first table is a bus, id table. The function below
+        //              is used to add the bus and id drop down box and a action button
+        //              to add new row. 
+
+        function addBusID() {
+            num = num + 1
+            var tbody = document.querySelector("#busIDAdd tbody");
+            var row = document.createElement("tr");     // new row
+            row.id = "row" + num;
+
+            //This is used to create the select for bus drop down box.
+            var selectCell1 = document.createElement("td"); //first cell
+            var select1 = document.createElement("select"); //drop down box
+           
+            select1.name = 'ToBusNum'
+            selectCell1.appendChild(select1);
+            row.appendChild(selectCell1);
+            
+
+            //This is used to create the select for id drop down box.
+            var selectCell2 = document.createElement("td"); //second cell
+            var select2 = document.createElement("select"); //drop down box
+            select2.name = 'ID'
+            
+            selectCell2.appendChild(select2);
+            row.appendChild(selectCell2);
+
+            //This is the button is used add new row. 
+            var buttonCell = document.createElement("td");  //third cell
+            var button = document.createElement("button");  //button
+            button.textContent = "Remove";
+            button.className = "btn btn-primary";
+            button.onclick = function () {
+                row.remove();               //when you click this button, run remove function.
+            };
+            buttonCell.appendChild(button);
+            row.appendChild(buttonCell);
+            tbody.appendChild(row);
+            selectBusNum(num)
+            selectIDNum(num)
+        }
+
+        // SelectIDNum(num) : This is used to fill the drop down box with id Numbers. 
+        //                    The ID Number Drop down box is the second cell of each row. 
+        function selectIDNum(num) {
+            var data = document.querySelector("#rows #row" + num + " td select[name='ID']");
+            for (var i = 1; i < 10; i++) {
+                var option = document.createElement("option");
+                option.value = i;
+                option.textContent = i;
+                data.appendChild(option);
+            }
+        }
+
+        // selectBusNum(num) : This is used to fill the drop down box with Bus Numbers.
+        //                     The Bus Number Drop down box at the first cell of each row.
+        function selectBusNum(num) {
+            var selectElement = document.querySelector("#rows #row" + num + " td select[name='ToBusNum']");
+            if (busNumbersData) {
+                for (var i = 0; i < busNumbersData.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = busNumbersData[i];
+                    option.textContent = busNumbersData[i];
+                    selectElement.appendChild(option);
+                }
+            }
+        }
+
+        // getTableData() : This is used to get the rows of the con and icon table
+        //                  When we get the table data saved in an array. we return it
+        //                  as the function then we use it in the submitForm and send the
+        //                  data to the server. 
+        function getTableData(tableId) {
+            var tableRows = document.querySelectorAll(`#${tableId} tbody tr`);
+            var tableData = [];
+
+            tableRows.forEach(function (row) {
+                var cells = row.getElementsByTagName("td");
+                var rowData = {
+                    col1: cells[0].textContent,
+                    col2: cells[1].textContent,
+                    col3: cells[2].textContent,
+                    col4: cells[3].getElementsByTagName("input")[0].value,
+                };
+                tableData.push(rowData);
+            });
+            return tableData;
+        }
+
+
+        // getBusIDTable() : This is used to get the rows of the first table which is the bus, id table.
+        //                   When we get the table data saved in an array. we return it
+        //                   as the function then we use it in the submitForm and send the
+        //                   data to the server.                   
+        function getBusIDTableData() {
+            var tableRows = document.querySelectorAll("#busIDAdd tbody tr");
+            var tableData = [];
+
+            tableRows.forEach(function (row) {
+                var cells = row.getElementsByTagName("td");
+                var rowData = {
+                    bus: cells[0].getElementsByTagName("select")[0].value,
+                    id: cells[1].getElementsByTagName("select")[0].value
+                };
+
+                tableData.push(rowData);
+            });
+
+            return tableData;
+        }
+
+        function createFormDataUpload() {
+            const formData = {
+                model: model,
+                name: name,
+                busIDTable: getBusIDTableData()
+            };
+
+            const iconTable = document.getElementById("iconTable");
+            if (iconTable && iconTable.style.display !== "none") {
+                formData.iconTable = getTableData("iconTable");
+            }
+
+            const conTable = document.getElementById("conTable");
+            if (conTable && conTable.style.display !== "none") {
+                formData.conTable = getTableData("conTable");
+            }
+
+            const formDataUpload = new FormData();
+            formDataUpload.append("file", document.querySelector("input[type='file']").files[0]);
+            formDataUpload.append("data", JSON.stringify(formData));
+
+            return formDataUpload;
+        }
+
+        // submitForm(event) : The function is used to send the table data to the server. 
+        //                     The first part of the code is used to take all the table data and put it in a JSON.
+        //                     The remaining part uses fetch to send the JSON in the packet created. If the data
+        //                     is correctly sent to the server, the server responds with a redirection link.
+        function submitForm(event) {
+            fetch("/table", {
+                method: "POST",
+                body: createFormDataUpload(),
+                headers: {
+                    "X-request-ID": "Submit" // set the X-request-ID header
+                }
+            })
+            .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error("Error uploading file and data");
+                    }
+                })
+            .then(data => {window.location = data.redirect_url;})
+            .catch(error => {console.log(error);});
+        }
+
+        // newTable() : The function is used to send the table data to the server then redirect so we can submit new data
+        //              The first part of the code is used to take all the table data and put it in a JSON.
+        //              The remaining part uses fetch to send the JSON in the packet created. If the data
+        //              is correctly sent to the server, the server responds with a redirection link.
+
+        function newTable() {
+            event.preventDefault();
+            fetch("/table", {
+                method: "POST",
+                body: createFormDataUpload(),
+                headers: {
+                    "X-request-ID": "newTable" // set the X-request-ID header
+                }
+            })
+            .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error("Error uploading file and data");
+                    }
+                })
+            .then(data => {window.location = data.redirect_url;})
+            .catch(error => {console.log(error);});
+        }
+
+
+
+        // populateTable() :  This is used to poplate the ICON or CON Table. 
+        //                    Each Selection from decide.html will be used to find the best template 
+        //                    that should be filled by the user. Each Model is saved in JSON in model.json.
+        //                    The correct one is sent to the client and we use the function to fill it. 
+        function populateTable(tableName) {
+            var table = document.getElementById(tableName + "Table"); //conTable or iconTable.
+            var tbody = table.getElementsByTagName("tbody")[0];
+
+            // Clear existing rows
+            tbody.innerHTML = "";
+
+            // Get the appropriate JSON data based on the tableName parameter 
+            var jsonData = (tableName === "con") ? list.con : list.icon;
+
+            // Populate rows from the JSON data
+            jsonData.forEach(function (row) {
+                var newRow = document.createElement("tr");
+
+                //fill the first three cells of each row.
+                for (var i = 0; i < 3; i++) {
+                    var cell = document.createElement("td");
+                    cell.textContent = row[i];;
+                    newRow.appendChild(cell);
+                }
+                
+                //create an input box. 
+                var inputCell = document.createElement("td");
+                var input = document.createElement("input");
+                input.type = "number";
+                inputCell.appendChild(input);
+                newRow.appendChild(inputCell);
+                //fill the fourth cell of each row.
+                var cell = document.createElement("td")
+                cell.textContent = row[3]
+                newRow.appendChild(cell);
+
+                tbody.appendChild(newRow);
+            });
+        }
+        //This is used to load up the page immediately it opened by the browser. 
+        window.onload = function () {
+            selectBusNum(num);            //Fill the Bus Number Drop down box for the first row
+            selectIDNum(num);             //Fill the ID Number Drop down box for the first row
+            document.getElementById("header").textContent  =  model + ": " + name;        //Fill the h1
+            if(list.con.length > 0){
+                populateTable("con");
+            }
+            if(list.icon.length > 0){
+                populateTable("icon");  //populate icon table.
+            }
+            if (list.icon.length == 0){
+                document.getElementById("iconTable").style.display = "none";
+            }
+            if (list.con.length == 0){
+                document.getElementById("cconTable").style.display = "none";
+            }
+        };
+    </script>
+</body>
+
+</html>

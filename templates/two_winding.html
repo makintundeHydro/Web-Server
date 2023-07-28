@@ -1,0 +1,387 @@
+<!-- This HTML deals with the the Two Winding Transformer -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Two Winding Transformer </title>
+  <link rel="stylesheet" href="static\table.css">
+  <style>
+    th {
+      text-align: center;
+      width: 80px;
+      font-size: 8px;
+    }
+
+    #tableBody td input {
+      width: 100%;
+      font-size: 8px;
+      height: 30px;
+      box-sizing: border-box;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 10px;
+    }
+
+    .logout-button {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #ff0000;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="/logout" class="logout-button">Logout</a>
+  </header>
+
+  <div class="container">
+    <h1 class="table-heading">Two Winding Transformer (Positive Sequence)</h1>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">From Bus Number</th>
+          <th scope="col">To Bus Number</th>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Metered Bus</th>
+          <th scope="col">Winding 1 Side</th>
+          <th scope="col">Controlled Bus</th>
+          <th scope="col" colspan="7">Winding 1 Tap Datas</th>
+          <th scope="col" colspan="2">Impedance</th>
+          <th scope="col" colspan="3">MVA Rating (with cooling)</th>
+          <th scope="col" colspan="2">Magnetizing</th>
+          <th scope="col" colspan="6">Winding Data</th>
+          <th scope="col">Winding Connect Angle</th>
+          <th scope="col" colspan="2">Load Drop Compensation</th>
+          <th scope="col">Impedance Correction Table</th>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>Number of Tap Positions</th>
+          <th>Control Mode</th>
+          <th>Auto Adjust</th>
+          <th scope="col" colspan="2">Control Range</th>
+          <th scope="col" colspan="2">Tap Range</th>
+          <th> R (pu)</th>
+          <th> X (pu)</th>
+          <th>Rate A</th>
+          <th>Rate B</th>
+          <th>Rate C</th>
+          <th>G (pu)</th>
+          <th>B (pu)</th>
+          <th>MVA Winding Base</th>
+          <th>Winding</th>
+          <th scope="col" colspan="2">Winding 1</th>
+          <th scope="col" colspan="2"> Winding 2</th>
+          <th></th>
+          <th> R (pu)</th>
+          <th> X (pu)</th>
+          <th></th>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>Vmax (pu)</th>
+          <th>Vmin (pu)</th>
+          <th>Maximum Tap (pu)</th>
+          <th>Minimum Tap (pu)</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>Nominal kV</th>
+          <th>Tap Ratio</th>
+          <th>Nominal kV</th>
+          <th>Tap Ratio</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <form id="two_wind_form" onsubmit="submitForm(event)">
+        <tbody id="tableBody">
+          <tr id="row1">
+            <td scope="FromBusNum"><input required type="decimal"></td>
+            <td scope="ToBusNum"><select class="select-twoWinding" name="ToBusNum"></select></td>
+            <td scope="ID"><select class="select-twoWinding" name="ID"></select></td>
+            <td scope="Name"><input required type="decimal"></td>
+            <td scope="MeteredBus"><input required type="decimal"></td>
+            <td scope="Winding1Side"><input required type="decimal"></td>
+            <td scope="ControlledBus"><input required type="decimal"></td>
+            <td scope="Winding1Tap_NumTapPos"><input required type="decimal"></td>
+            <td scope="Winding1Tap_ContMode"><input required type="decimal"></td>
+            <td scope="Winding1Tap_AutoAdj"><input required type="decimal"></td>
+            <td scope="Winding1Tap_ContRange_Vmax"><input required type="decimal"></td>
+            <td scope="Winding1Tap_ContRange_Vmin"><input required type="decimal"></td>
+            <td scope="Winding1Tap_TapRange_max"><input required type="decimal"></td>
+            <td scope="Winding1Tap_TapRange_min"><input required type="decimal"></td>
+            <td scope="Impedance_R"><input required type="decimal"></td>
+            <td scope="Impedance_X"><input required type="decimal"></td>
+            <td scope="MVA_RateA"><input required type="decimal"></td>
+            <td scope="MVA_RateB"><input required type="decimal"></td>
+            <td scope="MVA_RateC"><input required type="decimal"></td>
+            <td scope="Magnetizing_G"><input required type="decimal"></td>
+            <td scope="Magnetizing_B"><input required type="decimal"></td>
+            <td scope="WindingData_MVA"><input required type="decimal"></td>
+            <td scope="WindingData_Angle"><input required type="number"></td>
+            <td scope="WindingData_1_Nominal"><input required type="decimal"></td>
+            <td scope="WindingData_1_TapRatio"><input required type="decimal"></td>
+            <td scope="WindingData_2_Nominal"><input required type="decimal"></td>
+            <td scope="WindingData_2_TapRatio"><input required type="decimal"></td>
+            <td scope="winding_connect_angle"><input required type="decimal"></td>
+            <td scope="Load_R"><input required type="decimal"></td>
+            <td scope="Load_X"><input required type="decimal"></td>
+            <td scope="Impedance_Corr_Table"><input required type="decimal"></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="32">
+              <div class="form-group">
+                <label for="reportNotes">Notes:</label>
+                <textarea id="reportNotes" name="reportNotes" rows="4"
+                  placeholder="Add notes about the report..."></textarea>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="32">
+              <div class="button-container">
+                <button onclick="removeRow()" class="btn btn-danger">Remove</button>
+                <button class="btn btn-primary" onclick="addRow()">Add Row</button>
+                <button class="btn btn-primary">Next</button>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
+      </form>
+    </table>
+  </div>
+
+  <script>
+    var num = 1
+    var busNumbersData = JSON.parse('{{ busNumbers|tojson }}'); //This is the JSON passed from the Flask server. 
+
+    // selectBusNum(num) : This is used to fill the drop down box with Bus Numbers.
+    //                     The Bus Number Drop down box at the first cell of each row.
+    function selectBusNum(num) {
+      var data = document.querySelector("#row" + num + " td select[name='ID']");
+      for (var i = 1; i < 11; i++) {
+        var option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        data.appendChild(option);
+      }
+    }
+
+    // SelectIDNum(num) : This is used to fill the drop down box with id Numbers. 
+    //                    The ID Number Drop down box is the second cell of each row. 
+    function selectIDNum(num) {
+      var selectElement = document.querySelector("#row" + num + " td select[name='ToBusNum']");
+
+      if (busNumbersData) {
+        for (var i = 0; i < busNumbersData.length; i++) {
+          var option = document.createElement("option");
+          option.value = busNumbersData[i];
+          option.textContent = busNumbersData[i];
+          selectElement.appendChild(option);
+        }
+      }
+    }
+
+    //This is used to load up the page immediately it opened by the browser. 
+    window.onload = function () {
+      selectBusNum(num);    //Fill the Bus Number Drop down box for the first row
+      selectIDNum(num);     //Fill the ID Number Drop down box for the first row
+    };
+
+
+    //  addRow() : This is used to add a new row to the Machine Positive Sequence Table. \
+    //            We will also fill the Bus Number Drop down box for each new row
+    //            We will also fill the ID Number Drop down box for each new row
+    //            The final feature added is the idea that in most of the document examined, the values for 
+    //            each row are the same. So, when you create a new row, the values in the row above is used
+    //            to fill up the new row cells. Then you can modify the cells that needs to be modified. 
+    function addRow() {
+      event.preventDefault();     //Prevent Form Actions from taking place anytime we call this function. 
+      var tableBody = document.getElementById("tableBody");
+      var lastRowId = tableBody.lastElementChild.getAttribute("id");
+      num = num + 1;
+      var newRowId = "row" + num;
+      var newRow = document.createElement("tr");    //new row
+      newRow.setAttribute("id", newRowId);
+      newRow.innerHTML = `
+        <td scope =FromBusNum > <input required type="decimal">  </td>
+        <td scope = "ToBusNum">
+          <select class="select-twoWinding" name = "ToBusNum">
+          </select>
+        </td>
+        <td scope = "ID">
+          <select class="select-twoWinding" name = "ID">
+          </select>
+        </td>
+        <td scope = "Name"><input required type="decimal"></td>
+        <td scope = "MeteredBus"><input required type="decimal"></td>
+        <td scope = "Winding1Side"><input required type="decimal"></td>
+        <td scope = "ControlledBus"><input required type="decimal"></td>
+        <td scope = "Winding1Tap_NumTapPos"><input required type="decimal"></td>
+        <td scope = "Winding1Tap_ContMode"><input required type="decimal"></td>
+        <td scope = "Winding1Tap_AutoAdj"><input required type="decimal"></td>
+        <td scope = "Winding1Tap_ContRange_Vmax"><input required type="decimal"></td>
+        <td scope = "Winding1Tap_ContRange_Vmin"><input required type="decimal"></td>
+        <td scope = "Winding1Tap_TapRange_max"><input required type="decimal"></td>
+        <td scope = "Winding1Tap_TapRange_min"><input required type="decimal"></td>
+        <td scope = "Impedance_R"><input required type="decimal"></td>
+        <td scope = "Impedance_X"><input required type="decimal"></td>
+        <td scope = "MVA_RateA"><input required type="decimal"></td>
+        <td scope = "MVA_RateB"><input required type="decimal"></td>
+        <td scope = "MVA_RateC"><input required type="decimal"></td>
+        <td scope = "Magnetizing_G"><input required type="decimal"></td>
+        <td scope = "Magnetizing_B"><input required type="decimal"></td>
+        <td scope = "WindingData_MVA"><input required type="decimal"></td> 
+        <td scope = "WindingData_Angle"><input required type="number"></td>
+        <td scope = "WindingData_1_Nominal"><input required type="decimal"></td>
+        <td scope = "WindingData_1_TapRatio"><input required type="decimal"></td>
+        <td scope = "WindingData_2_Nominal"><input required type="decimal"></td>
+        <td scope = "WindingData_2_TapRatio"><input required type="decimal"></td>
+        <td scope = "winding_connect_angle"><input required type="decimal"></td>
+        <td scope = "Load_R"><input required type="decimal"></td>
+        <td scope = "Load_X"><input required type="decimal"></td>
+        <td scope = "Impedance_Corr_Table"><input required type="decimal"></td>
+      `;      // content on new row. 
+      tableBody.appendChild(newRow);
+      selectBusNum(num);
+      selectIDNum(num);
+
+      //Fill the new row cells with the prev row cell values. 
+      var inputs = document.getElementById("row" + (num - 1)).getElementsByTagName("input");
+      for (var j = 0; j < inputs.length; j++) {
+        document.querySelectorAll('#tableBody #row' + num + ' input')[j].value = inputs[j].value;
+      }
+    }
+
+    // removeRow() : The function is used to remove last rows. 
+    //               It wont remove the first row.
+    function removeRow() {
+      event.preventDefault();
+      var row = document.getElementById("row" + num);
+      row.parentNode.removeChild(row);
+      num = num - 1
+    }
+
+    // submitForm(event) : The function is used to send the table data to the server. 
+    //                     The first part of the code is used to take all the table data and put it in a JSON.
+    //                     The remaining part uses fetch to send the JSON in the packet created. If the data
+    //                     is correctly sent to the server, the server responds with a redirection link.
+
+    function submitForm(event) {
+  event.preventDefault(); // Prevent Form Actions from taking place anytime we call this function.
+
+  var tableBody = document.getElementById("tableBody");
+  var rows = tableBody.getElementsByTagName("tr");
+
+  var values = [];
+  for (var i = 0; i < rows.length; i++) {
+    var rowData = []; // For each row, we will save 2 selects(BusNumber,ID) and 12 Inputs
+    var inputs = rows[i].getElementsByTagName("input");
+    var selects = rows[i].getElementsByTagName("select");
+
+    // append the input box to new row.
+    rowData.push(inputs[0].value);
+    // append the bus and id selection to new row.
+    rowData.push(selects[0].value);
+    rowData.push(selects[1].value);
+
+    // append the input boxes to new row.
+    for (var j = 1; j < inputs.length; j++) {
+      rowData.push(inputs[j].value);
+    }
+
+    // Validate that all values in the row are decimal numbers
+    if (!rowData.slice(1).every(value => /^-?\d+(\.\d+)?$/.test(value))) {
+      var messageElement = document.createElement("p");
+      messageElement.textContent = "Please enter valid decimal numbers.";
+      messageElement.style.position = "absolute";
+      messageElement.style.bottom = "10px";
+      messageElement.style.left = "10px";
+      messageElement.style.backgroundColor = "lightgray";
+      messageElement.style.padding = "10px";
+      messageElement.style.borderRadius = "5px";
+
+      var cardElement = document.querySelector("body");
+      cardElement.appendChild(messageElement);
+
+      setTimeout(function () {
+        messageElement.remove();
+      }, 3000);
+      return; // Exit the function if validation fails
+    }
+
+    // add the row to the big row that houses all the rows.
+    values.push(rowData);
+  }
+
+  // Get the value of the "Notes" textarea
+  var notes = document.getElementById("reportNotes").value;
+
+  // Include the "Notes" value in the data to be sent to the server
+  var dataToSend = {
+    values: values,
+    notes: notes
+  };
+
+  // Send the data to the server
+  fetch("/two_winding", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(dataToSend)
+  })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("two_wind_form").reset();
+
+      // Navigate to the redirected page by assigning the URL to window.location
+      window.location = data.redirect_url;
+    })
+    .catch(function (error) {
+      console.log("Error sending data to the server:", error);
+    });
+}
+
+  </script>
+</body>
+
+</html>

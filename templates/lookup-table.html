@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="static/style.css">
+  <style>
+    .card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 35vh; 
+      width: 400vw; 
+    }
+
+    .card-body {
+      text-align: center;
+      width: 200px; 
+    }
+
+    .generator-container {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .generator-heading {
+      margin: 0;
+      margin-right: 1rem;
+    }
+
+    .btn-primary {
+      margin-top: 1rem;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 10px;
+    }
+
+    .logout-button {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #ff0000;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/logout" class="logout-button">Logout</a>
+  </header>
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">Looking for a Table?</h1>
+      <br>
+      
+      <form id="myForm">
+        <div class="generator-container">
+          <select id="models" style="font-size: smaller;" onchange="showSubmodels()">
+            <option value="">Choose Model</option>
+          </select>
+        </div>
+
+
+        <div class="generator-container">
+          <label for="submodels">Choose Model Type:</label>
+          <select id="submodels" style="font-size: smaller;" ></select>
+        </div>
+
+
+        <div class="button-container">
+          <button type="button" class="btn btn-primary" onClick="submitForm()">Create</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+  <script>
+    var models = {
+                    "Generator Models": ["CBEST", "CDSMS1", "CGEN1", "CIMTR1", "CIMTR2", "CIMTR3", "CIMTR4", "CSMEST", "CSTATT", "CSVGN1", "CSVGN3", "CSVGN4", "CSVGN5", "CSVGN6", "FRECHG", "GENCLS", "GENDCO", "GENROE", "GENROU", "GENSAE", "GENSAL", "GENTPJ1", "GENTRA", "PLBVFU1"],
+                    "Compensator Models": ["CCOMP4U1", "COMP", "COMPCC", "IEEEVC", "REMCMP"],
+                    "Stabilizer Models": ["BEPSST", "IEE2ST", "IEEEST", "IVOST", "OSTB2T", "OSTB5T", "PSS1A", "PSS2A", "PSS2B", "PSS2CU1", "PSS3B", "PSS4B", "PSS6CU1", "PSS7CU1", "PTIST1", "PTIST3", "ST2CUT", "STAB1", "STAB2A", "STAB3", "STAB4", "STABNI", "STBSVC", "SYNAXBU1"],
+                    "Minimum Excitation Limiter Models": ["MNLEX1", "MNLEX2", "MNLEX3", "UEL1", "UEL2", "UEL2CU1"],
+                    "Maximum Excitation Limiter Models": ["BASOELU2", "MAXEX1", "MAXEX2", "OEL2CU1", "OEL5CU1"],
+                    "Excitation System Models":["AC1C", "AC2C", "AC3C", "AC4C", "AC5C", "AC6A", "AC6C", "AC6CU2", "AC7B", "AC7CU1", "AC8B", "AC8BBU2", "AC8CU1", "AC9CU1", "AC11CU1", "BBSEX1", "BUDCZT", "CELIN", "DC1C", "DC2C", "DC3A", "DC4B", "DC4CU1", "EMAC1T", "ESAC1A", "ESAC2A", "ESAC3A", "ESAC4A", "ESAC5A", "ESAC6A", "ESAC8B", "ESDC1A", "ESDC2A", "ESST1A", "ESST2A", "ESST3A", "ESST4B", "ESURRY", "EX2000", "EXAC1", "EXAC1A", "EXAC2", "EXAC3", "EXAC4", "EXBAS", "EXDC2", "EXELI", "EXNEBB", "EXNI", "EXPIC1", "EXST1", "EXST2", "EXST2A", "EXST3", "IEEET1", "IEEET2", "IEEET3", "IEEET4", "IEEET5", "IEEEX1", "IEEEX2", "IEEEX3", "IEEEX4", "IEET1A", "IEET1B", "IEET5A", "IEEX2A", "IVOEX", "OEX12T", "OEX3T", "REXSY1", "REXSYS", "SCRX", "SEXS", "ST1C", "ST4CU1", "ST5B", "ST5C", "ST6B", "ST6CU1", "ST7B", "ST7C", "ST8CU1", "ST9CU1", "ST10CU1", "URHIDT", "URST5T"],        
+                    "Turbine-Governor Models": ["BBGOV1", "CRCMGV", "DEGOV", "DEGOV1", "DEGOV1DU", "GAST", "GAST2A", "GAST2ADU", "GASTDU", "GASTWD", "GASTWDDU", "GGOV1", "GGOV1DU", "GOVSTEAMEUU", "HYGOV", "HYGOV2", "HYGOV2DU", "HYGOVDU", "HYGOVM", "HYGOVR1", "HYGOVT", "HYG3U1", "H6EU1", "IEEEG1", "IEEEG1SDU", "IEEEG2", "IEEEG3", "IEEEG3DU", "IEESGO", "IEESGODU", "IVOGO", "PIDGOV", "PIDGOVDU", "PWTBD1", "SGT2EU1", "SGT8HMU1", "SGT8HSU1", "SITGTU1", "SHAF25", "TGOV1", "TGOV1DU", "TGOV2", "TGOV3", "TGOV3DU", "TGOV4", "TGOV5", "TURCZT", "TWDM1T", "TWDM2T", "URCSCT", "URGS3T", "WEHGOV", "WESGOV", "WESGOVDU", "WPIDHY", "WPIDHYDU", "WSHYDD", "WSHYGP", "WSIEG1"],
+                    "Turbine Load Controller Models": ["LCFB1"],
+                    "Load Characteristic Models": ["ACMTBLU1", "ACMTOWU1", "ACMTZNU1", "ACMTARU1", "ACMTALU1", "CIM5BL", "CIM5OW", "CIM5ZN", "CIM5AR", "CIM5AL", "CIM6BL", "CIM6OW", "CIM6ZN", "CIM6AR", "CIM6AL", "CIMWBL", "CIMWOW", "CIMWZN", "CIMWAR", "CIMWAL", "CLODBL", "CLODOW", "CLODZN", "CLODAR", "CLODAL", "CMLDBLU2", "CMLDOWU2", "CMLDZNU2", "CMLDARU2", "CMLDALU2", "CMLDBLDGU2", "CMLDOWU2", "CMLDZNDGU2", "CMLDARDGU2", "CMLDALDGU2", "EXTLBL", "EXTLOW", "EXTLZN", "EXTLAR", "EXTLAL", "IEELBL", "IEELOW", "IEELZN", "IEELAR", "IEELAL", "LDFRBL", "LDFROW", "LDFRZN", "LDFRAR", "LDFRAL"],
+                    "Load Relay Models": ["DLSHBL", "DLSHOW", "DLSHZN", "DLSHAR", "DLSHAL", "LDS3BL", "LDS3OW", "LDS3ZN", "LDS3AR", "LDS3AL", "LDSHBL", "LDSHOW", "LDSHZN", "LDSHAR", "LDSHAL", "LDSTBL", "LDSTOW", "LDSTZN", "LDSTAR", "LDSTAL", "LVS3BL", "LVS3OW", "LVS3ZN", "LVS3AR", "LVS3AL", "LVSHBL", "LVSHOW", "LVSHZN", "LVSHAR", "LVSHAL", "UVUFBLU1", "UVUFOWU1", "UVUFZNU1", "UVUFARU1", "UVUFALU1"],
+                    "Line Relay Model": ["CIROS1", "DISTR1", "DPDTR1", "RXR1", "SCGAP2", "SLLP1", "SLNOS1", "SLYPN1", "TIOCR1"],
+                    "Auxiliary-Signal Models": ["CHAAUT", "CPAAUT", "DCCAUT", "DCVRFT", "FCTAXBU1", "HVDCAT", "PAUX1T", "PAUX2T", "RBKELT", "RUNBKT", "SQBAUT"],
+                    "Two-Terminal dc Line Models": ["CDC1T", "CDC4T", "CDC6T", "CDC6TA", "CDC7T", "CDCABT", "CEEL2T", "CEELRIT", "CEELT", "CHIGATT", "CHVDC2U1", "CMDWAST", "CMDWS2T", "CMFORDT"],
+                    "Multi-Terminal dc Line Models": ["MTDC1T","MTDC2T","MTDC3T"],
+                    "VSC dc Line Models": ["HVDCPL1","VSCDCT"],
+                    "FACTS Device Models": ["CSTCNT","SVSMO3T2"],
+                    "Generic Renewable Generator Models": ["DERAU1", "PVGU1", "REGCA1", "REGCAU2", "REGCBU1", "WT1G1", "WT2G1", "WT3G1", "WT3G2", "WT4G1", "WT4G2"],
+                    "Generic Renewable Electrical Control Models": ["PVEU1", "REECA1", "REECB1", "REECCU1", "REECDU1", "WT2E1", "WT3E1", "WT4E1", "WT4E2"],
+                    "Generic Renewable Drive Train Models": ["PANELU1", "WT12T1", "WT3T1", "WTDTA1"],
+                    "Generic Renewable Pitch Control Models": ["IRRADU1", "WT3P1", "WTPTA1"],
+                    "Generic Renewable Aerodynamic Models": ["WT12A1", "WT12A1U_B", "WTARA1"],
+                    "Generic Renewable Torque Control Models": ["WTTQA1"],
+                    "Generic Renewable Plant Control Models": ["REAX4BU1", "REAX3BU1", "REPCA1", "REPCTA1"],
+                    "Switched Shunt Models": ["ABBSVC1", "CHSVCT", "CSSCST", "SVSMO1T2", "SVSMO2T2", "SVSMO2U2", "SWSHNT"],
+                    "Branch Device Models": ["CRANIT"],
+                    "Machine and Wind Machine Protection Models": ["LOEXR1T", "MCREPWU1", "NRCGP3U", "VPERHZU1"],
+                    "Two-winding Transformer Device Models": ["OLPS1T", "OLTC1T", "VFT1"],
+                    "Three-winding Transformer Device Models": ["OLPS3T", "OLTC3T"],
+                    "Two-terminal dc Other Models": ["DCTC1T"],
+                    "busOtherModels": ["PLNTBU1", "GetBusPhsVLTU", "GetBusSeqVLTU"],
+                    "switchedShuntOtherModels": ["SWSAXBU1"],
+                    "miscellaneousOtherModels": ["FRQDCAT", "FRQTPAT", "SAT2T", "SWCAPT", "VTGDCAT", "VTGTPAT"],
+                    "machineOtherModels": ["TSTGOV1", "GetGenSeqCURU"],
+                    "branchOtherModels": ["GetBrnSeqCURU"],
+                    "modelFunctions": ["BSDSCN", "FLOW", "FLOW1", "FLOW2", "FLOW3", "GENTMC", "GENTMZ", "GENTRP", "LINESW", "LINRCL", "LINTRP", "PTOTOW", "PTOTZN", "PTOTAR", "PTOTAL", "RELAY2", "RELAY3", "VOLMAG"]
+            }
+          
+    window.onload = function() {
+    var dropdown = document.getElementById("models");
+    for (var key in models) {
+          var option = document.createElement("option");
+          option.text = key;
+          option.value = key;
+          dropdown.appendChild(option);
+      }
+    }
+
+    function showSubmodels() {
+      var model = document.getElementById("models").value;
+      var submodels = document.getElementById("submodels");
+
+      // Clear previous options
+      submodels.innerHTML = "";
+
+      // Create options for the selected model
+      var options = models[model];
+
+      // Create and append option elements
+      for (var i = 0; i < options.length; i++) {
+        var option = document.createElement("option");
+        option.value = options[i];
+        option.text = options[i];
+        submodels.appendChild(option);
+      }
+    }
+    
+    function submitForm() {
+      // Get the selected model and name values
+      var modelSelect = document.getElementById("models");
+      var nameSelect = document.getElementById("submodels");
+      var model = modelSelect.value;
+      var name = nameSelect.value;
+
+      // Create the form data
+      var formData = new FormData();
+      formData.append("model", model);
+      formData.append("name", name);
+
+      // Send the form data as a fetch request
+      fetch("/choose-table", {
+        method: "POST",
+        body: formData
+      })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json(); // Parse the response as JSON
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(function (responseData) {
+        // Access the redirect URL from the JSON response
+        var redirectUrl = responseData.redirect_url;
+        // Redirect to the table page
+        window.location = redirectUrl;
+      })
+      .catch(function (error) {
+        console.log("Error:", error);
+      });
+    }
+
+  </script>
+</body>
+</html>

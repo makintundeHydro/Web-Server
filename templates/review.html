@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>View Report</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            background-color: #f9f9f9;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            width: 97%;
+            height: 93%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: auto;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        .platform {
+            display: flex;
+            flex-direction: column;
+            height: 85%;
+            overflow: hidden;
+        }
+
+        #report_image {
+            height: 70%;
+            overflow: hidden;
+        }
+
+        #top_image {
+            width: auto;
+            height: 80%;
+        }
+
+        #bottom_container {
+            display: flex;
+            height: 30%;
+        }
+
+        .center-image {
+            margin: auto
+        }
+
+        #notes {
+            width: 33.33%;
+            text-align: left;
+
+        }
+
+        #legend_image {
+            width: 33.33%;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            height: 15%;
+            right: 0;
+            text-align: left;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #top-report {
+            text-align: left;
+            width: 33.33%;
+            max-width: 33.33%;
+        }
+
+        #top-report table {
+            width: 100%;
+        }
+
+        #top-report th,
+        #top-report td {
+            border: 1px solid #ccc;
+            padding: 1px;
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        #disclaimer {
+            text-align: left;
+            width: 33.33%;
+            max-width: 33.33%;
+            font-size: 10px;
+        }
+
+        #init-body {
+            display: flex;
+            flex-direction: column;
+            height: 70%;
+            align-items: flex-start;
+        }
+
+        .table-bordered {
+            border-collapse: collapse;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+        }
+
+        .table-bordered td {
+            border: 1px solid black;
+            padding: 4px;
+            font-size: 11px;
+        }
+
+        .table-bordered th {
+            border: 1px solid black;
+            padding: 4px;
+            font-size: 14px;
+        }
+
+        .table-bordered tfoot td,
+        .table-bordered1 tfoot td {
+            border: none;
+        }
+
+        .table-bordered tfoot,
+        .table-bordered1 tfoot {
+            text-align: left;
+        }
+
+        .table-bordered1 {
+            border-collapse: collapse;
+            margin: auto;
+            margin-top: 0;
+        }
+
+        .table-bordered1 td {
+            border: 1px solid black;
+            font-size: 12px;
+            padding: 3px;
+        }
+
+        .table-bordered1 th {
+            border: 1px solid black;
+            padding: 2px;
+            font-size: 10px;
+        }
+
+        .table-bordered2 {
+            border-collapse: collapse;
+            margin: auto;
+            margin-top: 0;
+        }
+
+        .table-bordered2 td {
+            border: 1px solid black;
+            padding: 4px;
+            font-size: 10px;
+        }
+
+        .table-bordered2 th {
+            border: 1px solid black;
+            padding: 6px;
+            font-size: 12px;
+        }
+
+        .card {
+            background-color: #f0f0f0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+            text-align: center;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="page section">
+        <div class="content">
+            <div class="platform">
+                <div id="report_image" class="center-image">
+                    <img id="top_image" alt="">
+                </div>
+                <div id="bottom_container">
+                    <div id="legend_image">
+                        <img alt="">
+                    </div>
+                    <div style="flex-grow: 1;"></div>
+                    <div id="notes">
+                        <h2>Notes</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="page section">
+        <div class="content">
+            <div id="init-body">
+                <table id="machine_seqNo" class="table-bordered">
+                    <thead>
+                        <tr id="heading">
+                            <th style="text-align: center; font-size: xx-large;" colspan="14">Power Flow Data: Machine
+                                (Positive SequenceTable)</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Bus Number</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nominal Voltage (KV)</th>
+                            <th scope="col">Scheduled Voltage (pu)</th>
+                            <th scope="col">Remote Bus Number</th>
+                            <th scope="col">Pmin (MW)</th>
+                            <th scope="col">Pmax (MW)</th>
+                            <th scope="col">Qmin (MVar)</th>
+                            <th scope="col">QMax (MVar)</th>
+                            <th scope="col">Mbase</th>
+                            <th scope="col">Impedance R(pu)</th>
+                            <th scope="col">Impedance X(pu)</th>
+                            <th scope="col">Wind Machine Control Mode</th>
+                            <th scope="col">Wind Power Factor</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="page section">
+        <div class="content">
+            <div id="init-body">
+                <table id="two_seq" class="table-bordered1 ">
+                    <thead>
+                        <tr>
+                            <th colspan="31" style=" text-align: center; font-size: xx-large;">Two Winding Transformer
+                                (Positive Sequence) </th>
+                        </tr>
+                        <tr>
+                            <th scope="col">From Bus Number</th>
+                            <th scope="col">To Bus Number</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Metered Bus</th>
+                            <th scope="col">Winding 1 Side</th>
+                            <th scope="col">Controlled Bus</th>
+                            <th scope="col" colspan="7">Winding 1 Tap Datas</th>
+                            <th scope="col" colspan="2">Impedance</th>
+                            <th scope="col" colspan="3">MVA Rating (with cooling)</th>
+                            <th scope="col" colspan="2">Magnetizing</th>
+                            <th scope="col" colspan="6">Winding Data</th>
+                            <th scope="col">Winding Connect Angle</th>
+                            <th scope="col" colspan="2">Load Drop Compensation</th>
+                            <th scope="col">Impedance Correction Table</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Number of Tap Positions</th>
+                            <th>Control Mode</th>
+                            <th>Auto Adjust</th>
+                            <th scope="col" colspan="2">Control Range</th>
+                            <th scope="col" colspan="2">Tap Range</th>
+                            <th> R (pu)</th>
+                            <th> X (pu)</th>
+                            <th>Rate A</th>
+                            <th>Rate B</th>
+                            <th>Rate C</th>
+                            <th>G (pu)</th>
+                            <th>B (pu)</th>
+                            <th>MVA Winding Base</th>
+                            <th>Winding</th>
+                            <th scope="col" colspan="2">Winding 1</th>
+                            <th scope="col" colspan="2"> Winding 2</th>
+                            <th></th>
+                            <th> R (pu)</th>
+                            <th> X (pu)</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Vmax (pu)</th>
+                            <th>Vmin (pu)</th>
+                            <th>Maximum Tap (pu)</th>
+                            <th>Minimum Tap (pu)</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Nominal kV</th>
+                            <th>Tap Ratio</th>
+                            <th>Nominal kV</th>
+                            <th>Tap Ratio</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="body_two_winding"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function fillTable(tableData, tFootData, tableBody, num, tbodyId) {
+            const tbody = document.createElement("tbody");
+
+            tableData.forEach(rowData => {
+                const row = document.createElement("tr");
+                rowData.forEach(cellData => {
+                    const cell = document.createElement("td");
+                    cell.textContent = cellData;
+                    row.appendChild(cell);
+                });
+                tbody.appendChild(row);
+            });
+
+            tableBody.appendChild(tbody); 
+
+            const tfoot = document.createElement("tfoot");
+            const rowVal = document.createElement("tr");
+            const cellVal = document.createElement("td");
+            cellVal.setAttribute("colspan", num);
+            const replacedData = tFootData.replace(/\\n/g, '<br>');
+            cellVal.innerHTML = replacedData;
+            rowVal.appendChild(cellVal);
+            tfoot.appendChild(rowVal);
+            tableBody.appendChild(tfoot);
+        }
+
+        function createTable(headers, data, table) {
+            const tbody = document.createElement("tbody");
+
+            // Create table headers
+            const headerRow = document.createElement("tr");
+            headers.forEach((header) => {
+                const th = document.createElement("th");
+                th.textContent = header;
+                headerRow.appendChild(th);
+            });
+            tbody.appendChild(headerRow);
+
+            // Create table rows
+            data.forEach((rowData) => {
+                const row = document.createElement("tr");
+                for (let key in rowData) {
+                    const cell = document.createElement("td");
+                    cell.textContent = rowData[key];
+                    row.appendChild(cell);
+                }
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(tbody);
+        }
+
+        data = JSON.parse('{{ send|tojson }}');
+        const legendImageElement = document.querySelector('#legend_image img');
+        if (legendImageElement) {
+            legendImageElement.src = data.report_container.legendImage;
+        }
+
+        const reportImageElement = document.querySelector('#report_image img');
+        if (reportImageElement) {
+            reportImageElement.src = data.report_container.reportImage;
+        }
+
+        const notesElement = document.querySelector('#notes p');
+        if (notesElement) {
+            notesElement.textContent = data.report_container.reportNotes;
+        }
+
+        fillTable(data.machine_seq_table.data, data.machine_seq_table.footnote, document.getElementById("machine_seqNo"), "10");
+        fillTable(data.two_winding_table.data, data.machine_seq_table.footnote, document.getElementById("two_seq"), "31");
+
+        const maxRowsPerTable = 10; // Maximum number of rows in each table
+        const all_models_arrays = Object.keys(data.Model);
+        for (let model in data.Model) {
+            modelfunc(data.Model[model], model)
+        }
+
+        function modelfunc(model, header) {
+            const maxRowsPerTable = 26
+            for (let models in model) {
+                for (let figures in model[models]) {
+                    const table = document.createElement("table");
+                    const trH = document.createElement("tr");
+                    const thH = document.createElement("th");
+                    thH.setAttribute("colspan", "31");
+                    thH.style.textAlign = "center";
+                    thH.textContent = header + ":" + models;
+                    trH.appendChild(thH);
+                    table.appendChild(trH);
+
+                    createTable(["Bus", "ID"], model[models][figures].bus, table);
+                    if ("icon" in model[models][figures]) {
+                        createTable(["ICON", "DESCRIPTION", "PARAMETER", "VALUE"], model[models][figures].icon, table);
+                    }
+                    if ("con" in model[models][figures]) {
+                        createTable(["CON", "DESCRIPTION", "PARAMETER", "VALUE"], model[models][figures].con, table);
+                    }
+
+                    const totalRows = table.getElementsByTagName("tr").length;
+                    let rowCounter = 0;
+
+                    while (rowCounter < totalRows) {
+                        const pagsec = document.createElement('div');
+                        pagsec.classList.add('page', 'section');
+                        const content = document.createElement('div');
+                        content.classList.add('content');
+                        const subTable = document.createElement("table");
+                        subTable.classList.add("table-bordered2")
+                        for (let j = 0; j < maxRowsPerTable && rowCounter < totalRows; j++) {
+                            const rowIndex = rowCounter;
+                            const row = table.getElementsByTagName("tr")[rowIndex].cloneNode(true);
+                            subTable.appendChild(row);
+                            rowCounter++;
+                        }
+                        content.appendChild(subTable);
+                        pagsec.appendChild(content);
+                        document.body.appendChild(pagsec);
+                    }
+
+                    if (model[models][figures].image !== "") {
+                        const pagsec = document.createElement('div');
+                        pagsec.classList.add('page', 'section');
+                        const content = document.createElement('div');
+                        content.classList.add('content');
+                        const image_1 = document.createElement('div');
+                        const img = document.createElement("img");
+                        img.src = model[models][figures].image
+                        img.style.width = "50%";
+                        img.style.height = "auto";
+                        image_1.style.justifyContent = "center";
+                        image_1.style.alignItems = "center";
+                        image_1.appendChild(img)
+                        content.appendChild(image_1);
+                        pagsec.appendChild(content);
+                        document.body.appendChild(pagsec);
+                    }
+
+
+                }
+            }
+        }
+
+
+        const pageSections = document.querySelectorAll('.page.section .content');
+
+        pageSections.forEach((section) => {
+            const footer = document.createElement('div');
+            footer.classList.add('footer');
+
+            const disclaimer = document.createElement('div');
+            disclaimer.id = 'disclaimer';
+            disclaimer.innerHTML = `
+                            <strong>The Engineer limits their responsibility to the Generator Facility (GF) only. The GF includes the Generator Interconnection Facilities (GIF).
+                            By sealing this drawing the Engineer confirms that they have taken reasonable care in developing this PSSE model of the GF.
+                            The sealing Engineer neither guarantees nor warrants the accuracy, reliability, completeness or currency of any PSSE model data included herein
+                            that represents Manitoba Hydro’s Existing System.`;
+            const topReport = document.createElement('div');
+            topReport.id = 'top-report';
+            topReport.innerHTML = `
+            <table>
+            <tr><th colspan="4" style="font-size: medium;">Manitoba Hydro PSSE Generator Model</th></tr>
+            <tr id="locations"><td colspan="4"></td></tr>
+            <tr>
+                <td>Generator Owner</td>
+                <td id="generator_owner" colspan="3">Manitoba Hydro Generation & Wholesale Business Unit</td>
+            </tr>
+            <tr>
+                <td>Consultant</td>
+                <td>Date</td>
+                <td>Initials</td>
+                <td>Revision</td>
+            </tr>
+            <tr>
+                <td id="consultant"></td>
+                <td id="date"></td>
+                <td id="initials"></td>
+                <td id="revision"></td>
+            </tr>
+            <tr>
+                <td>Effective Date</td>
+                <td id="effective_date" colspan="3"></td>
+            </tr>
+            </table>
+        `;
+
+            footer.appendChild(disclaimer);
+            footer.appendChild(topReport);
+            section.appendChild(footer);
+
+            const topReportLocations = section.querySelector("#locations td");
+            if (topReportLocations) {
+                topReportLocations.textContent = data.about_report.location;
+            }
+
+            updateTextContent(section, "generator_owner", data.about_report.generator_owner);
+            updateTextContent(section, "consultant", data.about_report.consultant);
+            updateTextContent(section, "date", data.about_report.effective_date);
+            updateTextContent(section, "initials", data.about_report.initials);
+            updateTextContent(section, "revision", data.about_report.revision_date);
+            updateTextContent(section, "effective_date", data.about_report.effective_date);
+        });
+
+        function updateTextContent(section, elementId, value) {
+            const element = section.querySelector(`#${elementId}`);
+            if (element) {
+                element.textContent = value;
+            }
+        }
+
+
+        const pagsec = document.createElement('div');
+        pagsec.classList.add('page', 'section');
+        const content = document.createElement('div');
+        content.classList.add('content');
+
+        const card = document.createElement('div');
+        card.classList.add('card');
+        const message = document.createElement('h1');
+        message.textContent = 'Do you want to submit?';
+        const submitButton = document.createElement('button');
+        submitButton.textContent = 'Submit';
+        submitButton.addEventListener('click', checkout);
+
+        card.appendChild(message);
+        card.appendChild(submitButton);
+
+        content.appendChild(card);
+        pagsec.appendChild(content);
+        document.body.appendChild(pagsec);
+
+        // Function for submitting the form
+        function checkout() {
+            const dataV = {
+                confirm: 'Yes'
+            };
+
+            fetch('/checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataV)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Extract the redirect URL from the response
+                    const redirectUrl = data.redirect_url;
+
+                    // Navigate to the redirected page by assigning the URL to window.location
+                    window.location = redirectUrl;
+                })
+                .catch(error => {
+                    console.log('Error sending data to the server:', error);
+                });
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Centered Card with Dropdown and Date Selection</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    select,
+    input[type="date"] {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #0c41f0;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 10px;
+    }
+
+    .logout-button {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #ff0000;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="/logout" class="logout-button">Logout</a>
+  </header>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="reportType">Type of report:</label>
+        <select id="reportType">
+          <option disabled selected>Choose Report Type</option>
+          <option value="Preliminary">Preliminary</option>
+          <option value="Interconnection Request">Interconnection Request</option>
+          <option value="AS-Built">AS-Built</option>
+        </select>
+        <br></br>
+        <label for="location">Select a location:</label>
+        <select id="location"></select>
+        <br></br>
+        <label for="date">Select a date:</label>
+        <select id="date"></select>
+        <br></br>
+        <button onclick="generateReport()">Generate Report</button>
+        <button onclick="generateDYRFile()">Generate DYR File</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var Locations = ["Choose Location", "Brandon", "Dorsey", "Grand Rapids", "Great Falls", "Jenpeg", "Kelsey", "Kettle", "Limestone", "Long Spruce", "McArthur", "Pine Falls", "Point du Bois", "Selkirk", "Seven Sisters", "St Joseph", "St Leon", "Wuskwatim"];
+
+    window.onload = function () {
+      var locationDropdown = document.getElementById("location");
+      var dateDropdown = document.getElementById("date");
+
+      Locations.forEach(function (location) {
+        var option = document.createElement("option");
+        option.text = location;
+        option.value = location;
+        locationDropdown.appendChild(option);
+      });
+
+      locationDropdown.addEventListener("change", function () {
+        var selectedLocation = this.value;
+
+        (async function () {
+          setTimeout(async function () {
+            var dates = await getDatesFromDatabase(selectedLocation);
+
+            dateDropdown.innerHTML = "";
+
+            dates.forEach(function (date) {
+              var option = document.createElement("option");
+              option.text = date;
+              option.value = date;
+              dateDropdown.appendChild(option);
+            });
+          }, 500);
+        })();
+      });
+    };
+
+
+    async function getDatesFromDatabase(location) {
+      var selectedLocation = document.getElementById("location").value;
+      var selectedReportType = document.getElementById("reportType").value;
+      var formData = new FormData();
+      formData.append("location", selectedLocation);
+      formData.append("reportType", selectedReportType);
+
+      try {
+        const response = await fetch("/dates", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error("Error generating DYR file");
+        }
+
+        const data = await response.json();
+        return data.dates;
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    }
+
+    function generateReport() {
+      var selectedLocation = document.getElementById("location").value;
+      var selectedReportType = document.getElementById("reportType").value;
+      var selectedDate = document.getElementById("date").value;
+
+      var formData = new FormData();
+      formData.append("location", selectedLocation);
+      formData.append("reportType", selectedReportType);
+      formData.append("date", selectedDate);
+
+      fetch("/generate_report", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json(); // Return JSON data instead of text
+          } else {
+            throw new Error("Error generating report");
+          }
+        })
+        .then((data) => {
+          // Check if the response contains the 'redirect_url' key
+          if ('redirect_url' in data) {
+            window.location.href = data.redirect_url;
+          } else {
+            console.log('Error: Missing redirect_url in response');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
+
+
+    function generateDYRFile() {
+      var selectedLocation = document.getElementById("location").value;
+      var selectedReportType = document.getElementById("reportType").value;
+      var selectedDate = document.getElementById("date").value;
+
+      var formData = new FormData();
+      formData.append("location", selectedLocation);
+      formData.append("reportType", selectedReportType);
+      formData.append("date", selectedDate);
+
+      fetch("/generate_dyr", {
+        method: "POST",
+        body: formData,
+      })
+        .then(function (response) {
+          if (response.ok) {
+            // Check if the response is a file (blob)
+            if (response.headers.get("content-type").startsWith("application/octet-stream")) {
+              return response.blob();
+            } else {
+              // If not a file, assume it's a JSON response for redirection
+              return response.json().then(function (data) {
+                if (data.redirect_url) {
+                  window.location.href = data.redirect_url;
+                } else {
+                  throw new Error("Invalid server response");
+                }
+              });
+            }
+          } else {
+            throw new Error("Error generating DYR file");
+          }
+        })
+        .then(function (blob) {
+          // If response is a file (blob), trigger the download
+          var downloadLink = document.createElement("a");
+          var url = URL.createObjectURL(blob);
+          downloadLink.href = url;
+          downloadLink.download = "output.dyr";
+          downloadLink.click();
+          URL.revokeObjectURL(url);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+
+    }
+  </script>
+</body>
+
+</html>

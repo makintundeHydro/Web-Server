@@ -1,0 +1,168 @@
+<!-- To enable a nicer experience, this page was created so that you can 
+      choose the bus numbers that are present in the project. Clicking Next on this page will route you to machine positive sequence. -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Add Bus Numbers</title>
+  <link rel="stylesheet" href="static/style.css">
+  <style>
+    header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 10px;
+    }
+
+    .logout-button {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #ff0000;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    .card {
+      margin: 20px;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    .scrollable-card {
+      max-height: 500px;
+      max-width: 400px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="/logout" class="logout-button">Logout</a>
+  </header>
+  <div class="card scrollable-card">
+    <h1 id="locationHeader">{{ location }}</h1>
+    <div class="form-group">
+      <label for="reportImage">Report Image:</label>
+      <input type="file" id="reportImage" name="reportImage" accept="image/*">
+    </div>
+    <div class="form-group">
+      <label for="reportNotes">Notes:</label>
+      <textarea id="reportNotes" name="reportNotes" rows="10" cols="50" placeholder="Add notes about the report..."></textarea>
+    </div>
+
+    <h3 class="card-title">Enter all bus numbers</h3>
+    <div id="busNumbers">
+      <div class="form-group name-input">
+        <input type="number" class="form-control" name="buses[]" required placeholder="Ex: 669710">
+        <button type="button" class="btn btn-danger" onclick="removeNameInput(this)">Remove</button>
+      </div>
+    </div>
+    <button id="newButton" type="button" class="btn btn-primary" onclick="addNewBusNumber()">NEW</button>
+    <button id="submitButton" type="submit" class="btn btn-primary" onclick="submitForm(this)">Next</button>
+  </div>
+  <script>
+    function addNewBusNumber() {
+      if (checkInputsFilled()) {
+        var nameInputsContainer = document.getElementById('busNumbers');
+        var nameInput = document.createElement('div');
+        nameInput.className = 'form-group name-input';
+        nameInput.innerHTML =
+          `
+                  <input type="number" class="form-control" name="buses[]" required placeholder="Ex: 669710">
+                  <button type="button" class="btn btn-danger" onclick="removeNameInput(this)">Remove</button>
+                `;
+        nameInputsContainer.appendChild(nameInput);
+      }
+    }
+
+    function removeNameInput(button) {
+      var nameInput = button.parentNode;
+      nameInput.parentNode.removeChild(nameInput);
+    }
+
+    function checkInputsFilled() {
+      var nameInputs = document.querySelectorAll('.form-group.name-input input');
+      for (var i = 0; i < nameInputs.length; i++) {
+        if (nameInputs[i].value.trim() === '') {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function getBusNumbers() {
+      var busInputs = Array.from(document.getElementsByName("buses[]"));
+      var busNumbers = busInputs.map(input => input.value);
+      return busNumbers;
+    }
+
+    function createFormDataUpload() {
+      const formData = {};
+      formData.reportNotes = document.getElementById("reportNotes").value;
+      formData.busNumbers = getBusNumbers();
+      const formDataUpload = new FormData();
+      formDataUpload.append("reportImage", document.getElementById("reportImage").files[0]);
+      formDataUpload.append("data", JSON.stringify(formData));
+      return formDataUpload;
+    }
+
+    function submitForm(event) {
+      var busNumbers = getBusNumbers();
+
+      if (busNumbers[0].trim() === '') {
+        var messageElement = document.createElement("p");
+        messageElement.textContent = "Please enter at least one bus number.";
+        messageElement.style.position = "absolute";
+        messageElement.style.bottom = "10px";
+        messageElement.style.left = "10px";
+        messageElement.style.backgroundColor = "lightgray";
+        messageElement.style.padding = "10px";
+        messageElement.style.borderRadius = "5px";
+
+        var cardElement = document.querySelector(".card");
+        cardElement.appendChild(messageElement);
+
+        setTimeout(function () {
+          messageElement.remove();
+        }, 3000);
+
+        return;
+      }
+
+      fetch("/bus", {
+        method: "POST",
+        body: createFormDataUpload(),
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Error uploading file and data");
+          }
+        })
+        .then(data => {
+          window.location = data.redirect_url;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+
+
+  </script>
+</body>
+
+</html>

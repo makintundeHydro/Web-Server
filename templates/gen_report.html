@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Choose Report</title>
+    <style>
+        /* Style the cards to make them look visually appealing */
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #f7f7f7;
+            width: 300px;
+            /* Set a fixed width for the cards */
+            display: inline-block;
+            vertical-align: top;
+            word-wrap: break-word;
+            /* Allow the cards to wrap text if needed */
+        }
+
+        .card ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .card li {
+            margin-bottom: 5px;
+        }
+
+        /* Style the button */
+        .card button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- The container to hold the cards -->
+    <div id="cardsContainer"></div>
+
+    <script>
+        // Get the entries from the server-side rendered data
+        var entries = JSON.parse('{{ entries|tojson }}');
+
+        // Function to create a card element with entry values and a button
+        function createCard(entry) {
+            var card = document.createElement("div");
+            card.classList.add("card");
+
+            // Construct the card content
+            var content = "<ul>";
+            for (var key in entry) {
+                content += "<li><strong>" + key + ": </strong>" + entry[key] + "</li>";
+            }
+            content += "</ul>";
+
+            // Add a beautiful button to the card
+            content += '<button onclick="handleButtonClick(event)">Generate DYR</button>';
+
+            card.innerHTML = content;
+            return card;
+        }
+
+        // Function to create and display cards for each entry
+        function createCards() {
+            var container = document.getElementById("cardsContainer");
+            for (var entryKey in entries) {
+                var entry = entries[entryKey];
+                var card = createCard(entry);
+                container.appendChild(card);
+            }
+        }
+
+        // Button click event handler
+        function handleButtonClick(event) {
+            var cardDiv = event.target.parentElement; // Get the card div
+            var ulElement = cardDiv.querySelector("ul"); // Get the ul element with data
+
+            // Convert ul content to a JSON object
+            var data = {};
+            ulElement.querySelectorAll("li").forEach(function (li) {
+                var parts = li.textContent.split(": ");
+                data[parts[0]] = parts[1];
+            });
+
+            // Send the data to the server using fetch()
+            fetch("/generate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            }).then(function (response) {
+                if (response.ok) {
+                    // Check if the response is a file (blob)
+                    if (response.headers.get("content-type").startsWith("application/octet-stream")) {
+                        return response.blob();
+                    } else {
+                        // If not a file, assume it's a JSON response for redirection
+                        return response.json().then(function (data) {
+                            if (data.redirect_url) {
+                                window.location.href = data.redirect_url;
+                            } else {
+                                throw new Error("Invalid server response");
+                            }
+                        });
+                    }
+                } else {
+                    throw new Error("Error generating DYR file");
+                }
+            })
+                .then(function (blob) {
+                    // If response is a file (blob), trigger the download
+                    var downloadLink = document.createElement("a");
+                    var url = URL.createObjectURL(blob);
+                    downloadLink.href = url;
+                    downloadLink.download = "output.dyr";
+                    downloadLink.click();
+                    URL.revokeObjectURL(url);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+
+
+        }
+
+        // Call the function to create and display the cards
+        createCards();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,301 @@
+<!-- This HTML deals with the the Power Flow Data: Machine (Positive Sequence Table) -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Machine_Positive_Sequence_Table</title>
+  <link rel="stylesheet" href="static\table.css">
+  <style>
+    header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 10px;
+    }
+
+    .logout-button {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #ff0000;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="/logout" class="logout-button">Logout</a>
+  </header>
+
+  <div class="container">
+    <h1 class="table-heading">Power Flow Data: Machine (Positive Sequence Table)</h1>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Bus Number</th>
+          <th scope="col">ID</th>
+          <th scope="col">Nominal Voltage (KV)</th>
+          <th scope="col">Scheduled Voltage (pu)</th>
+          <th scope="col">Remote Bus Number</th>
+          <th scope="col">Pmax (MW)</th>
+          <th scope="col">Pmin (MW)</th>
+          <th scope="col">QMax (MVar)</th>
+          <th scope="col">QMin (MVar)</th>
+          <th scope="col">Mbase</th>
+          <th colspan="2" style="text-align:center">Impedance</th>
+          <th scope="col">Wind Machine Control Mode</th>
+          <th scope="col">Wind Power Factor</th>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>R (pu)</th>
+          <th>X (pu)</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <form id="myForm" onsubmit="submitForm(event)">
+        <tbody id="tableBody">
+          <tr id="row1">
+            <td scope="busNumber"><select name="bus_numbers"></select></td>
+            <td scope="ID"><select name="id"></select></td>
+            <td scope="nominal_voltage"><input name="nominal_voltage" required type="decimal"></td>
+            <td scope="Scheduled_voltage"><input name="scheduled_voltage" required type="decimal"></td>
+            <td scope="remote_bus_number"><input name="remote_bus_number" required type="decimal"></td>
+            <td scope="PMin"><input name="p_min" required type="decimal"></td>
+            <td scope="Pmax"><input name="p_max" required type="decimal"></td>
+            <td scope="Qmin"><input name="q_min" required type="decimal"></td>
+            <td scope="Qmax"><input name="q_max" required type="decimal"></td>
+            <td scope="Mbase"><input name="mbase" required type="decimal"></td>
+            <td scope="Impedance_R"><input name="impedance_r" required type="decimal"></td>
+            <td scope="Impedance_X"><input name="impedance_x" required type="decimal"></td>
+            <td scope="Wind_Mac_Contt"><input name="Wind_Mac_Contt" required type="decimal"></td>
+            <td scope="Wind_Pow_Factor"><input name="Wind_Mac_Contt" required type="decimal"></td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="14">
+              <div class="form-group">
+                <label for="reportNotes">Foot Notes:</label>
+                <textarea id="reportNotes" name="reportNotes" rows="4"
+                  placeholder="Add notes about the report..."></textarea>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="14">
+              <div class="button-container">
+                <button onclick="removeRow()" class="btn btn-danger">Remove</button>
+                <button class="btn btn-primary" onclick="addRow()">Add Row</button>
+                <button class="btn btn-primary">Submit</button>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
+      </form>
+    </table>
+  </div>
+
+
+  <script>
+    var num = 1
+    var busNumbersData = JSON.parse('{{ busNumbers|tojson }}'); //This is the JSON passed from the Flask server. 
+
+    // selectBusNum(num) : This is used to fill the drop down box with Bus Numbers.
+    //                     The Bus Number Drop down box at the first cell of each row.
+    function selectBusNum(num) {
+      var selectElement = document.querySelector("#row" + num + " td select[name='bus_numbers']");
+      if (busNumbersData) {
+        for (var i = 0; i < busNumbersData.length; i++) {
+          var option = document.createElement("option");
+          option.value = busNumbersData[i];
+          option.textContent = busNumbersData[i];
+          selectElement.appendChild(option);
+        }
+      }
+    }
+
+    // SelectIDNum(num) : This is used to fill the drop down box with id Numbers. 
+    //                    The ID Number Drop down box is the second cell of each row. 
+    function selectIDNum(num) {
+      var data = document.querySelector("#row" + num + " td select[name='id']");
+      for (var i = 1; i < 11; i++) {
+        var option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        data.appendChild(option);
+      }
+    }
+
+    //This is used to load up the page immediately it opened by the browser. 
+    window.onload = function () {
+      selectBusNum(num);      //Fill the Bus Number Drop down box for the first row
+      selectIDNum(num);       //Fill the ID Number Drop down box for the first row
+    };
+
+    // addRow() : This is used to add a new row to the Machine Positive Sequence Table. \
+    //            We will also fill the Bus Number Drop down box for each new row
+    //            We will also fill the ID Number Drop down box for each new row
+    //            The final feature added is the idea that in most of the document examined, the values for 
+    //            each row are the same. So, when you create a new row, the values in the row above is used
+    //            to fill up the new row cells. Then you can modify the cells that needs to be modified. 
+    function addRow() {
+      event.preventDefault();       //Prevent Form Actions from taking place anytime we call this function. 
+      var tableBody = document.getElementById("tableBody");
+      var lastRowId = tableBody.lastElementChild.getAttribute("id");
+      num = num + 1;
+      var newRowId = "row" + num;
+      var newRow = document.createElement("tr"); //new row
+      newRow.setAttribute("id", newRowId);
+      newRow.innerHTML = `                
+      <td scope="busNumber">
+              <select name="bus_numbers"></select>
+            </td>
+            <td scope="ID">
+              <select name="id"></select>
+            </td>
+            <td scope="nominal_voltage"><input name="nominal_voltage" required type="decimal"></td>
+            <td scope="Scheduled_voltage"><input name="scheduled_voltage" required type="decimal"></td>
+            <td scope="remote_bus_number"><input name="remote_bus_number" required type="decimal"></td>
+            <td scope="PMin"><input name="p_min" required type="decimal"></td>
+            <td scope="Pmax"><input name="p_max" required type="decimal"></td>
+            <td scope="Qmin"><input name="q_min" required type="decimal"></td>
+            <td scope="Qmax"><input name="q_max" required type="decimal"></td>
+            <td scope="Mbase"><input name="mbase" required type="decimal"></td>
+            <td scope="Impedance_R"><input name="impedance_r" required type="decimal"></td>
+            <td scope="Impedance_X"><input name="impedance_x" required type="decimal"></td>
+            <td scope="Wind_Mac_Contt"><input name="Wind_Mac_Contt" required type="decimal"></td>
+            <td scope="Wind_Pow_Factor"><input name="Wind_Mac_Contt" required type="decimal"></td>
+      `;  // content on new row. 
+      tableBody.appendChild(newRow);
+      selectBusNum(num);
+      selectIDNum(num);
+
+      //Fill the new row cells with the prev row cell values. 
+      var inputs = document.getElementById("row" + (num - 1)).getElementsByTagName("input");
+      for (var j = 0; j < inputs.length; j++) {
+        document.querySelectorAll('#tableBody #row' + num + ' input')[j].value = inputs[j].value;
+      }
+    }
+
+    // removeRow() : The function is used to remove last rows. 
+    //               It wont remove the first row.
+    function removeRow() {
+      event.preventDefault();
+      if (num > 1) {
+        var row = document.getElementById("row" + num);
+        row.parentNode.removeChild(row);
+        num = num - 1
+      }
+    }
+
+    // submitForm(event) : The function is used to send the table data to the server. 
+    //                     The first part of the code is used to take all the table data and put it in a JSON.
+    //                     The remaining part uses fetch to send the JSON in the packet created. If the data
+    //                     is correctly sent to the server, the server responds with a redirection link.
+    function submitForm(event) {
+      event.preventDefault(); // Prevent form actions from taking place anytime we call this function.
+      var tableBody = document.getElementById("tableBody");
+      var rows = tableBody.getElementsByTagName("tr");
+
+      var values = [];
+      var isDecimal = true; // Flag to track if all values are decimal numbers
+
+      for (var i = 0; i < rows.length; i++) {
+        var rowData = [];
+        var inputs = rows[i].getElementsByTagName("input");
+        var selects = rows[i].getElementsByTagName("select");
+
+        for (var k = 0; k < selects.length; k++) {
+          rowData.push(selects[k].value);
+        }
+
+        for (var j = 0; j < inputs.length; j++) {
+          var inputValue = inputs[j].value;
+
+          // Check if the input value is a valid decimal number
+          if (!isDecimalNumber(inputValue)) {
+            isDecimal = false; // Set the flag to false if a non-decimal value is found
+            break;
+          }
+
+          rowData.push(inputValue);
+        }
+
+        values.push(rowData);
+      }
+
+      var notes = document.getElementById("reportNotes").value;
+
+      // Check if all values are decimal numbers
+      if (!isDecimal) {
+        // Create a message element to inform the client to check the form properly
+        var messageElement = document.createElement("p");
+        messageElement.textContent = "Please enter only decimals.";
+        messageElement.style.position = "absolute";
+        messageElement.style.bottom = "10px";
+        messageElement.style.left = "10px";
+        messageElement.style.backgroundColor = "lightgray";
+        messageElement.style.padding = "10px";
+        messageElement.style.borderRadius = "5px";
+
+        // Add the message element to the card body
+        var cardBody = document.querySelector("body");
+        cardBody.appendChild(messageElement);
+
+        // Remove the message element after 3 seconds
+        setTimeout(function () {
+          messageElement.remove();
+        }, 3000);
+
+        return; // Stop the form submission
+      }
+
+      var dataToSend = {
+        values: values,
+        notes: notes
+      };
+
+      fetch("/machine_sequence", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dataToSend)
+      })
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("myForm").reset();
+
+          window.location = data.redirect_url;
+        })
+        .catch(function (error) {
+          console.log("Error sending data to the server:", error);
+        });
+    }
+
+    function isDecimalNumber(value) {
+      return /^-?\d*\.?\d+$/.test(value);
+    }
+
+
+  </script>
+</body>
+
+</html>

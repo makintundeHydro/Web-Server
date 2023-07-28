@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+
+        .content {
+            width: 100%;
+            height: 93%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: auto;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        #top-report {
+            text-align: left;
+            width: 33.33%;
+            max-width: 33.33%;
+        }
+
+        #top-report table {
+            width: 100%;
+        }
+
+        #top-report th,
+        #top-report td {
+            border: 1px solid #ccc;
+            padding: 1px;
+            font-size: 10px;
+        }
+
+        #disclaimer {
+            text-align: left;
+            width: 33.33%;
+            max-width: 33.33%;
+            font-size: x-small;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            text-align: left;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #init-body {
+            display: flex;
+            flex-direction: column;
+            height: 70%;
+            align-items: flex-start;
+        }
+
+        .platform {
+            display: flex;
+            flex-direction: column;
+            height: 90%;
+        }
+
+        #report_image {
+            flex: 0 0 80%;
+        }
+
+        #bottom_container {
+            flex: 0 0 20%;
+            display: flex;
+        }
+
+        .center-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        #notes {
+            width: 33.33%;
+            text-align: left;
+
+        }
+
+        #legend_image {
+            width: 33.33%;
+        }
+
+        .table-bordered {
+            border-collapse: collapse;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid black;
+            font-size: small;
+        }
+
+        #head_two_winding tr th {
+            font-size: xx-small;
+        }
+
+        .shrink-table {
+            width: 90%;
+            font-size: 12px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+        }
+
+        .table-bordered {
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid black;
+            padding: 4px;
+        }
+
+        .center-image {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page section">
+        <div class="content">
+            <div class="platform">
+                <div id="report_image" class="center-image">
+                    <img width="650" height="500"
+                        src="C:\Users\makintunde\Desktop\Proj\PSSE-TOOL\Web Server\uploads\1hdjrGdJSJih9lw.jpg" alt="">
+                </div>
+                <div id="bottom_container">
+                    <div id="legend_image">
+                        <img width="200" height="150"
+                            src="C:\Users\makintunde\Desktop\Proj\PSSE-TOOL\Web Server\uploads\1hdjrGdJSJih9lw.jpg"
+                            alt="">
+                    </div>
+                    <div style="flex-grow: 1;"></div>
+                    <div id="notes">
+                        <h2>Notes</h2>
+                        <p style="font-size: 11px;">1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+                            dolor nihil voluptas perspiciatis Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                            Iure soluta odio sed nulla quaerat iste, ipsa sunt tempora magnam veniam a totam et
+                            veritatis doloribus blanditiis excepturi, numquam commodi itaque.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page section">
+        <div class="content">
+            <div id="init-body">
+                <table id="machine_seqNo" class="table-bordered shrink-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;" colspan="14">Power Flow Data: Machine (Positive
+                                SequenceTable)</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Bus Number</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nominal Voltage (KV)</th>
+                            <th scope="col">Scheduled Voltage (pu)</th>
+                            <th scope="col">Remote Bus Number</th>
+                            <th scope="col">Pmin (MW)</th>
+                            <th scope="col">Pmax (MW)</th>
+                            <th scope="col">Qmin (MVar)</th>
+                            <th scope="col">QMax (MVar)</th>
+                            <th scope="col">Mbase</th>
+                            <th scope="col">Impedance R(pu)</th>
+                            <th scope="col">Impedance X(pu)</th>
+                            <th scope="col">Wind Machine Control Mode</th>
+                            <th scope="col">Wind Power Factor</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="page section">
+        <div class="content">
+            <div id="init-body">
+                <table id="two_seq" class="table table-bordered shrink-table">
+                    <thead id="head_two_winding">
+                        <tr>
+                            <th colspan="31" style=" text-align: center;">Two Winding Transformer (Positive Sequence)
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="col">From Bus Number</th>
+                            <th scope="col">To Bus Number</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Metered Bus</th>
+                            <th scope="col">Winding 1 Side</th>
+                            <th scope="col">Controlled Bus</th>
+                            <th scope="col" colspan="7">Winding 1 Tap Datas</th>
+                            <th scope="col" colspan="2">Impedance</th>
+                            <th scope="col" colspan="3">MVA Rating (with cooling)</th>
+                            <th scope="col" colspan="2">Magnetizing</th>
+                            <th scope="col" colspan="6">Winding Data</th>
+                            <th scope="col">Winding Connect Angle</th>
+                            <th scope="col" colspan="2">Load Drop Compensation</th>
+                            <th scope="col">Impedance Correction Table</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Number of Tap Positions</th>
+                            <th>Control Mode</th>
+                            <th>Auto Adjust</th>
+                            <th scope="col" colspan="2">Control Range</th>
+                            <th scope="col" colspan="2">Tap Range</th>
+                            <th> R (pu)</th>
+                            <th> X (pu)</th>
+                            <th>Rate A</th>
+                            <th>Rate B</th>
+                            <th>Rate C</th>
+                            <th>G (pu)</th>
+                            <th>B (pu)</th>
+                            <th>MVA Winding Base</th>
+                            <th>Winding</th>
+                            <th scope="col" colspan="2">Winding 1</th>
+                            <th scope="col" colspan="2"> Winding 2</th>
+                            <th></th>
+                            <th> R (pu)</th>
+                            <th> X (pu)</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Vmax (pu)</th>
+                            <th>Vmin (pu)</th>
+                            <th>Maximum Tap (pu)</th>
+                            <th>Minimum Tap (pu)</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Nominal kV</th>
+                            <th>Tap Ratio</th>
+                            <th>Nominal kV</th>
+                            <th>Tap Ratio</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        data = { 'about_report': { 'location': 'Grand Rapids', 'generator_owner': 'Alberta Power Ltd.', 'consultant': 'Energy Solutions', 'initials': 'A.C', 'revision_date': '2024-11-30', 'effective_date': '2020-11-15' }, 'report_container': { 'reportImage': 'http://localhost:3000/uploads/I9vWQ4evFG8YrCT.jpg', 'legendImage': 'http://localhost:3000/uploads/I9vWQ4evFG8YrCT.jpg', 'reportNotes': 'sons' }, 'two_winding_table': { 'data': [[923263, 703335, 4, 'Y5', '-0.9935', '7.7', '-4.8264', '6.9295', '6.0466', '4.0679', '6.9', '-2.5145', '7.30342', '-1.9759', '0.7', '0.0016', '8.9', '-3.996', '8.3314', '3.1', '2.3526', '-0.682', '0.8834', '9.661', '7.89037', '-3.0432', '-3.24272', '4.695', '2.60674', '0.9', '4.3056']], 'footnote': 'Notes:\\n1. Random note\\n2. Another random note' }, 'machine_seq_table': { 'data': [[640850, 1, '2.3', '0.01143', 513667, '4.805', '-0.5', '-4.08995', '0.5596', '-1.89427', '3.5141', '-2.03', 2, 1], [490585, 8, '0.322', '-4.5765', 411401, '8.375', '2.62', '6.42', '1.70849', '-3.4', '9.7', '-3.3645', 3, 2], [920643, 7, '9.236', '-0.3077', 326252, '-3.137', '1.2', '8.34', '-0.8184', '-3.1687', '8.64632', '2.191', 3, 3], [989013, 4, '-4.1', '2.77', 602964, '2.454', '-3.376', '3.0243', '5.23186', '6.9', '-2.7', '5.6108', 3, 1], [917771, 9, '-4.97', '1.34085', 401082, '2.65', '5.2307', '7.36071', '-4.7', '0.3', '5.4406', '3.861', 1, 3], [351767, 9, '-4.6905', '3.06725', 740410, '0.14', '-3.8', '4.9386', '-2.96', '-4.1961', '0.3', '-4.11626', 1, 1]], 'footnote': 'Notes:\\n1. The first\\n2. The second' }, 'Model': { 'Generator Models': { 'GENSAE': { 'Figure': { 'bus': [{ 'bus': 899479, 'id': 33 }, { 'bus': 181897, 'id': 28 }, { 'bus': 427447, 'id': 61 }, { 'bus': 728666, 'id': 23 }], 'con': [{ 'col1': 'j', 'col2': 'D-Axis Opened Circuit Transient Time Constant', 'col3': '', 'col4': '4.708' }, { 'col1': 'j+1', 'col2': 'D-Axis Opened Circuit Sub-transient Time Constant', 'col3': '', 'col4': '5.55' }, { 'col1': 'j+2', 'col2': 'Q-Axis Opened Circuit Sub-transient Time Constant', 'col3': '', 'col4': '9.777' }, { 'col1': 'j+3', 'col2': 'Inertia', 'col3': '', 'col4': '6.52435' }, { 'col1': 'j+4', 'col2': 'Speed Damping', 'col3': '', 'col4': '3.9943' }, { 'col1': 'j+5', 'col2': 'D-Axis Synchronous Reactance', 'col3': 'Xd', 'col4': '-3.85' }, { 'col1': 'j+6', 'col2': 'Q-Axis Synchronous Reactance', 'col3': 'Xq', 'col4': '-1.311' }, { 'col1': 'j+7', 'col2': 'D-Axis Transient Reactance', 'col3': "X'd", 'col4': '6.84' }, { 'col1': 'j+8', 'col2': 'D/Q-Axis Sub-transient Reactance', 'col3': "X''d = X''q", 'col4': '5.234' }, { 'col1': 'j+9', 'col2': 'Leakage Reactance', 'col3': 'Xl', 'col4': '1.72' }, { 'col1': 'j+10', 'col2': 'Open Circuit Saturation Factor', 'col3': 'S(1.0)', 'col4': '-4.38' }, { 'col1': 'j+11', 'col2': 'Open Circuit Saturation Factor', 'col3': 'S(1.2)', 'col4': '1.509' }], 'icon': [], 'image_variable': 'http://localhost:3000/uploads/I9vWQ4evFG8YrCT.jpg' } } }, 'Turbine-Governor Models': { 'HYGOV2': { 'Figure': { 'bus': [{ 'bus': 728666, 'id': 56 }, { 'bus': 698972, 'id': 85 }, { 'bus': 899479, 'id': 70 }, { 'bus': 724825, 'id': 59 }, { 'bus': 427447, 'id': 11 }, { 'bus': 181897, 'id': 11 }], 'con': [], 'icon': [], 'image_variable': 'http://localhost:3000/uploads/I9vWQ4evFG8YrCT.jpg' } } } } }
+
+        const legendImageElement = document.querySelector('#legend_image img');
+        if (legendImageElement) {
+            legendImageElement.src = data.report_container.legendImage;
+        }
+
+        const reportImageElement = document.querySelector('#report_image img');
+        if (reportImageElement) {
+            reportImageElement.src = data.report_container.reportImage;
+        }
+
+        const notesElement = document.querySelector('#notes p');
+        if (notesElement) {
+            notesElement.textContent = data.report_container.reportNotes;
+        }
+
+        fillTable(data.machine_seq_table.data, data.machine_seq_table.footnote, document.getElementById("machine_seqNo"), "10")
+        fillTable(data.two_winding_table.data, data.machine_seq_table.footnote, document.getElementById("two_seq"), "31")
+
+        function fillTable(tableData, tFootData, tableBody, num) {
+            const tbody = document.createElement("tbody");
+            tableData.forEach(rowData => {
+                const row = document.createElement("tr");
+                rowData.forEach(cellData => {
+                    const cell = document.createElement("td");
+                    cell.textContent = cellData;
+                    row.appendChild(cell);
+                });
+                tbody.appendChild(row);
+            });
+
+            tableBody.appendChild(tbody)
+            const tfoot = document.createElement("tfoot")
+            const rowVal = document.createElement("tr");
+            const cellVal = document.createElement("td");
+            cellVal.setAttribute("colspan", num);
+            cellVal.textContent = tFootData;
+            rowVal.appendChild(cellVal);
+            tfoot.appendChild(rowVal)
+            tableBody.appendChild(tfoot)
+        }
+
+        const all_models_arrays = Object.keys(data.Model);
+        for (let model in data.Model) {
+            const pagsec = document.createElement('div');
+            pagsec.classList.add('page', 'section');
+            const content = document.createElement('div');
+            content.classList.add('content');
+            modelfunc(content, data.Model[model], model)
+            pagsec.appendChild(content)
+            document.body.appendChild(pagsec);
+        }
+
+        function modelfunc(section, model, header) {
+            for (let models in model) {
+                for (let figures in model[models]) {
+                    const table = document.createElement("table");
+                    table.classList.add("table-bordered", "compact-table3");
+                    const trH = document.createElement("tr");
+                    const thH = document.createElement("th");
+                    thH.setAttribute("colspan", "31");
+                    thH.style.textAlign = "center";
+                    thH.textContent = header + ":" + models;
+                    trH.appendChild(thH);
+                    table.appendChild(trH);
+                    section.appendChild(table);
+                    // Create table for bus data
+                    createTable(["Bus", "ID"], model[models][figures].bus, table);
+                    section.appendChild(table);
+                    // Create table for con data
+                    if ("icon" in model[models][figures]) {
+                        createTable(["ICON", "DESCRIPTION", "PARAMETER", "VALUE"], model[models][figures].icon, table);
+                        section.appendChild(table);
+                    }
+                    // Create table for icon data
+                    if ("con" in model[models][figures]) {
+                        createTable(["CON", "DESCRIPTION", "PARAMETER", "VALUE"], model[models][figures].con, table);
+                        section.appendChild(table);
+                    }
+                    if ("image_variable" in model[models][figures]) {
+                        const imgElement = document.createElement("img")
+                        imgElement.src = model[models][figures].image
+                        imgElement.style.display = "block"
+                        imgElement.style.margin = "0 auto"
+                        section.appendChild(imgElement)
+                    }
+
+                }
+            }
+        }
+
+        function createTable(headers, data, table) {
+            // const thead = document.createElement("tr");
+            const tbody = document.createElement("tbody");
+
+            // Create table headers
+            const headerRow = document.createElement("tr");
+            headers.forEach((header) => {
+                const th = document.createElement("th");
+                th.textContent = header;
+                headerRow.appendChild(th);
+            });
+            tbody.appendChild(headerRow);
+
+            //Create table rows
+            data.forEach((rowData) => {
+                const row = document.createElement("tr");
+                for (let key in rowData) {
+                    const cell = document.createElement("td");
+                    cell.textContent = rowData[key];
+                    row.appendChild(cell);
+
+                }
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(tbody);
+        }
+
+        const pageSections = document.querySelectorAll('.page.section .content');
+
+        pageSections.forEach((section) => {
+            const footer = document.createElement('div');
+            footer.classList.add('footer');
+
+            const disclaimer = document.createElement('div');
+            disclaimer.id = 'disclaimer';
+            disclaimer.innerHTML = `
+                            The Engineer limits their responsibility to the Generator Facility (GF) only. The GF includes the Generator Interconnection Facilities (GIF).
+                            By sealing this drawing the Engineer confirms that they have taken reasonable care in developing this PSSE model of the GF. 
+                            The sealing Engineer neither guarantees nor warrants the accuracy, reliability, completeness or currency of any PSSE model data included herein
+                            that represents Manitoba Hydro’s Existing System.
+
+        `;
+            const topReport = document.createElement('div');
+            topReport.id = 'top-report';
+            topReport.innerHTML = `
+            <table>
+            <tr><th colspan="4" style="font-size: 10px;">Manitoba Hydro PSSE Generator Model</th></tr>
+            <tr id="locations"><td colspan="4"></td></tr>
+            <tr>
+                <td>Generator Owner</td>
+                <td id="generator_owner" colspan="3">Manitoba Hydro Generation & Wholesale Business Unit</td>
+            </tr>
+            <tr>
+                <td>Consultant</td>
+                <td>Date</td>
+                <td>Initials</td>
+                <td>Revision</td>
+            </tr>
+            <tr>
+                <td id="consultant"></td>
+                <td id="date"></td>
+                <td id="initials"></td>
+                <td id="revision"></td>
+            </tr>
+            <tr>
+                <td>Effective Date</td>
+                <td id="effective_date" colspan="3"></td>
+            </tr>
+            </table>
+        `;
+
+            footer.appendChild(disclaimer);
+            footer.appendChild(topReport);
+            section.appendChild(footer);
+
+            const topReportLocations = section.querySelector("#locations td");
+            if (topReportLocations) {
+                topReportLocations.textContent = data.about_report.location;
+            }
+
+            updateTextContent(section, "generator_owner", data.about_report.generator_owner);
+            updateTextContent(section, "consultant", data.about_report.consultant);
+            updateTextContent(section, "date", data.about_report.effective_date);
+            updateTextContent(section, "initials", data.about_report.initials);
+            updateTextContent(section, "revision", data.about_report.revision_date);
+            updateTextContent(section, "effective_date", data.about_report.effective_date);
+        });
+
+        function updateTextContent(section, elementId, value) {
+            const element = section.querySelector(`#${elementId}`);
+            if (element) {
+                element.textContent = value;
+            }
+        }
+        updateTextContent("generator_owner", data.about_report.generator_owner);
+        updateTextContent("consultant", data.about_report.consultant);
+        updateTextContent("date", data.about_report.effective_date);
+        updateTextContent("initials", data.about_report.initials);
+        updateTextContent("revision", data.about_report.revision_date);
+        updateTextContent("effective_date", data.about_report.effective_date);
+    </script>
+</body>
+
+</html>
