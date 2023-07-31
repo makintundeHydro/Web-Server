@@ -215,6 +215,10 @@ class queries:
     def getLocation(myDb,location):
         myDb.cursor.execute(f"SELECT GS_ID FROM Location WHERE GS_Loc LIKE '{location}'")
         return myDb.cursor.fetchone()[0]
+    
+    def getLocationName(myDb,location):
+        myDb.cursor.execute(f"SELECT GS_Loc FROM Location WHERE GS_ID LIKE '{location}'")
+        return myDb.cursor.fetchone()[0]
 
     def addEntry(myDb,version_id,entry_type,approved,aboutReport,reportContainer):
         query = f"""INSERT INTO Entries (GS_ID, Type_ID, Generator_Owner, Consultant, Date, Revision_Date, Initials, Effective_Date, Legend_Image, Report_Image, Approved, Version_ID) OUTPUT INSERTED.Entries_ID VALUES   {queries.getLocation(myDb,aboutReport['location']),entry_type,aboutReport['generator_owner'],aboutReport['consultant'],aboutReport['effective_date'],aboutReport['revision_date'],
@@ -226,9 +230,8 @@ class queries:
         for note_type, note_val in notes.items():
             # Correct the replacement pattern to use four backslashes for each backslash in the original string
             note_val_replaced = note_val.replace(r'\\n', '\n')
-            query = f"""INSERT INTO Notes (Note_Val, Note_Type, Entries_ID) VALUES ({note_val_replaced}, '{note_type}', '{entry_num}')"""
-            myDb.cursor.execute(query)
-
+            sql = "INSERT INTO Notes (Note_Val, Note_Type, Entries_ID) VALUES (?, ?, ?)"
+            myDb.cursor.execute(sql, (note_val_replaced, note_type, entry_num))
             
 
     def addMacseq(myDb, converter, entries_id, values):
@@ -368,14 +371,16 @@ class queries:
 
                 # Commit the transaction if all queries are successful
                 myDb.cursor.commit()
+                myDb.autocommit = True
+                return True
 
             except Exception as e:
                 # Rollback the transaction if an error occurs
                 myDb.cursor.rollback()
                 print("An error occurred:", str(e))
-            finally:
-                # Reset autocommit and close the cursor
-                myDb.autocommit = True
+                return False
+
+                
         else:
             print("Report entry not found.")
 
@@ -392,7 +397,7 @@ class queries:
 
             try:
                 about_report = {
-                    "location": location,
+                    "location": queries.getLocationName(myDb,location),
                     "generator_owner" : entry_num_var[3],
                     "consultant" : entry_num_var[4],
                     "initials" : entry_num_var[7],

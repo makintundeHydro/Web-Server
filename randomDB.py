@@ -1,6 +1,7 @@
 import random
 import json
 import os
+import shutil
 from datetime import datetime
 from database import Database
 import string
@@ -52,38 +53,33 @@ def generate_random_string(length):
     characters = string.ascii_letters + string.digits
     return ''.join(random.choice(characters) for _ in range(length))
 
-def rename_files_in_folder(source_folder, destination_folder, name_length=15):
+def copy_files_in_folder(source_folder, destination_folder, name_length=15):
     if not os.path.exists(destination_folder):
         os.makedirs(destination_folder)
 
-    moved_files = []  # To store the names of the newly generated files
+    copied_files = []
 
     for filename in os.listdir(source_folder):
         if os.path.isfile(os.path.join(source_folder, filename)):
-            # Generate a random name for each file
             random_name = generate_random_string(name_length) + os.path.splitext(filename)[1]
             source_file_path = os.path.join(source_folder, filename)
             destination_file_path = os.path.join(destination_folder, random_name)
+            shutil.copy(source_file_path, destination_file_path)
+            copied_files.append("http://localhost:3000/uploads/" + random_name)
 
-            # Move the file with the new random name to the destination folder
-            os.rename(source_file_path, destination_file_path)
+    return copied_files
 
-            # Save the newly generated name to the array
-            moved_files.append("http://localhost:3000/uploads/" + random_name)
+report_image = copy_files_in_folder('C:\\Users\\makintunde\\Desktop\\random data\\Report_Image', 'C:\\Users\\makintunde\\Desktop\\PSSE\\PSSE-TOOL\\Web Server\\uploads', name_length=15)
+dyr_image = copy_files_in_folder('C:\\Users\\makintunde\\Desktop\\random data\\Model_Image', 'C:\\Users\\makintunde\\Desktop\\PSSE\\PSSE-TOOL\\Web Server\\uploads', name_length=15)
 
-    return moved_files
-
-for _ in range(5000):
+for _ in range(1000):
     revision_year = random.randint(current_year-10, current_year)
     effective_year = random.randint(current_year - 15, current_year)
 
     revisions = [ f"{revision_year}-01-01",f"{revision_year}-12-31",f"{revision_year}-02-28",f"{revision_year}-11-30",f"{revision_year}-03-31"]
 
     effective_dates = [f"{effective_year}-10-04",f"{effective_year}-05-12",f"{effective_year}-08-20",f"{effective_year}-11-15",f"{effective_year}-06-03"]
-
-    report_image = rename_files_in_folder(source_folder, destination_folder, name_length=15)
-    legend_image = rename_files_in_folder(source_folder, destination_folder, name_length=15)
-    
+   
     report_notes = ["Note that not all equipment shown on the Point Of Interconnection diagram in the Interconnection Operating Agreement or other Facility Electrical Single Line Diagrams can represented in the powerflow model.\n1.) The powerflow representation drops the character ‘G’ in\n      the generator unit identifier.\n2.)  With cooling the transformer ratings are,\n       90/120/150 MVA with ONAN/ONAF/ONAF.","Note that not all equipment shown on the Point Of Interconnection diagram in the Interconnection Operating Agreement or other Facility Electrical Single Line Diagrams can represented in the powerflow model.\n1.) The powerflow representation drops the character ‘G’ in\n      the generator unit identifier.\n2.)  With cooling the transformer ratings are,\n       72/96/120 MVA with ONS/ONP/ONPP.","Note that not all equipment shown on the Point Of Interconnection diagram in the Interconnection Operating Agreement or other Facility Electrical Single Line Diagrams can represented in the powerflow model.\n1.) The powerflow representation drops the character ‘G’ in\n      the generator unit identifier.\n2.)  With cooling the transformer ratings are,\n       37.5 MVA with ONW.\n3.)  With cooling the transformer ratings are,\n       13.5/18 MVA with ONAN/ONAF."]
     mac_note = ["*      The PSSE machine’s bus base voltage must match the machine nominal voltage.\n**    Pmax represents the maximum power output at rated power factor of 0.95.\n***   Pmin represents the minimum output level the unit is allowed to operate at under typical conditions (as provided by the system operator); the unit may be capable of\n       lower output.\n**** Machine powerflow impedance must equal the sub-transient reactance for some generator dynamics models.","*      The PSSE machine’s bus base voltage must match the machine nominal voltage.\n**     Machine powerflow impedance must equal the sub-transient reactance for some generator dynamics models.\n","*      The PSSE machine’s bus base voltage must match the machine nominal voltage. \n**    Pmax represents the maximum power output at 0.9 operating power factor. (The nameplate rated power factor is 0.9 for Unit 1 and 0.8 for all other units.)\n***   Pmin represents the minimum output level the unit is allowed to operate at under typical conditions.\nb**** Machine powerflow impedance must equal the sub-transient reactance for some generator dynamics models.\n***** Units 3, 5, 7 and 11 are officially retired and physically removed. Unit 4 is not connected to the system."]
     two_note = ["*    Typical operating tap position required. Generator is to provide details if there is more than one typical value.\n**   If Auto Adjust is set to ‘No’, any values are acceptable for these fields. The PSSE default in this case is 1.5 to 0.51 pu. \n*** Winding 2 tap ratio can be used to represent an off-load tap which cannot be adjusted during a PSSE simulation. If it exists details of this tap must be provided in the transformer data submission."]
@@ -98,11 +94,11 @@ for _ in range(5000):
         if category == "Generator Models":
             generator_model = random.choice(generator_models)
             variables = []
-            selected_bus_numbers = random.sample(bus_numbers, random.randint(1, 6))  # Randomly select bus numbers
+            selected_bus_numbers = random.sample(bus_numbers, random.randint(3, 6))  # Randomly select bus numbers
             for bus_number in selected_bus_numbers:
                 variables.append({
                     "bus": bus_number,
-                    "id": random.randint(1, 10)
+                    "id": random.randint(1, 11)
                 })
             con_variables = []
             icon_variables = []
@@ -133,7 +129,7 @@ for _ in range(5000):
                             "bus": variables,
                             "con": con,
                             "icon": icon,
-                            "image" : random.choice(report_image)
+                            "image" : random.choice(dyr_image)
                         }
                     }
                 }
@@ -177,7 +173,7 @@ for _ in range(5000):
                             "bus": variables,
                             "con": con,
                             "icon": icon,
-                            "image" : random.choice(report_image)
+                            "image" : random.choice(dyr_image)
                         }
                     }
                 }
@@ -219,7 +215,7 @@ for _ in range(5000):
                         "bus": variables,
                         "con": con,
                         "icon": icon,
-                         "image" : random.choice(report_image)
+                         "image" : random.choice(dyr_image)
                     }
                 }
             }
@@ -262,7 +258,7 @@ for _ in range(5000):
                         "bus": variables,
                         "con": con,
                         "icon": icon,
-                        "image" : random.choice(report_image)
+                        "image" : random.choice(dyr_image)
                     }
                 }
             }
@@ -291,26 +287,21 @@ for _ in range(5000):
         },
         "report_container": {
             "reportImage": random.choice(report_image),
-            "legendImage": "http://localhost:3000/uploads/legend.png",
-            "reportNotes": random.choice(notes),
+            "legendImage": "static/legend.png",
+            "reportNotes": random.choice(report_notes),
             "busNumbers": bus_numbers
         },
         "machine_seq_table" : {
             "data": generate_random_Mac(14),
-            "footnote": random.choice(footnotes)
+            "footnote": random.choice(mac_note)
         },
         "two_winding_table" : {
             "data": generate_random_Two(31),
-            "footnote": random.choice(footnotes)
+            "footnote": random.choice(two_note)
         },
         "Model": models
     }
     json_objects.append(report)
-
-# for i, obj in enumerate(json_objects):
-#     print(json.dumps(obj, indent=4))
-#     print()
-
 
 # Create the global dictionary
 global_dict = {}

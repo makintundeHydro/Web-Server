@@ -421,13 +421,22 @@ def generateReport():
     entry_num_var = queries.getEntriesID(myDb, location, entryType, versionID)
 
     if len(entry_num_var) < 2:
-        report_dict = queries.generate_report(myDb,location, converter, data, entry_num_var[0])
-        session['report_dict'] = report_dict  # Store report_dict in session
-        return jsonify({'redirect_url': '/view'})
+        if entry_num_var:
+            report_dict = queries.generate_report(myDb, location, converter, data, entry_num_var[0])
+            if report_dict:
+                # Report generation was successful
+                session['report_dict'] = report_dict  # Store report_dict in session
+                return jsonify({'redirect_url': '/view'})
+            else:
+                error_message = "Could not generate report"
+        else:
+            error_message = "The report does not exist"
+        return render_template('error.html', error_message=error_message)
     else:
         # Store entry_num_var in session and return the redirect URL
         session['entry_num_var'] = entry_num_var
         return jsonify({'redirect_url': '/confirm_report'})
+
     
 keys = ['Generator_Owner', 'Consultant', 'Date', 'Revision', 'Initials', 'Effective_Date']
 
@@ -455,12 +464,17 @@ def confirmReport():
         
         # Get the Entries_ID for the report entry in details
         entry_num_var = queries.getEntriesIDOne(myDb, report_placeholder["location"], report_placeholder["entry-type"], report_placeholder["version-id"], result['Consultant'], result['Date'], result['Generator_Owner'], result["Initials"])
-        if not entry_num_var:
-            return 'No entry_num_var found in session', 400
-
-        report_dict = queries.generate_report(myDb, report_placeholder["location"], converter, data, entry_num_var)
-        session['report_dict'] = report_dict  # Store report_dict in session
-        return jsonify({'redirect_url': '/view'})
+        if entry_num_var:
+            report_dict = queries.generate_report(myDb, report_placeholder["location"], converter, data, entry_num_var)
+            if report_dict:
+            # Report generation was successful
+                session['report_dict'] = report_dict  # Store report_dict in session
+                return jsonify({'redirect_url': '/view'})
+            else:
+                error_message = "Could not generate report"
+        else:
+            error_message = "The report does not exist"
+        return render_template('error.html', error_message=error_message)
 
 @app.route('/generate_dyr', methods=['GET','POST'])
 def handle_generate_dyr():
@@ -494,7 +508,8 @@ def handle_generate_dyr():
         if os.path.exists(dyr_file_path):
             return send_file(dyr_file_path, as_attachment=True, mimetype="application/octet-stream")
         else:
-            return 'Error generating DYR file', 500
+            error_message = 'Error generating DYR file'
+            return render_template('error.html', error_message=error_message)
     else:
         # Store entry_num_var in session and return the redirect URL
         session['entry_num_var'] = entry_num_var
@@ -523,7 +538,8 @@ def genReport():
         if os.path.exists(dyr_file_path):
             return send_file(dyr_file_path, as_attachment=True, mimetype="application/octet-stream")
         else:
-            return 'Error generating DYR file', 500
+            error_message = 'Error generating DYR file'
+            return render_template('error.html', error_message=error_message)
 
 @app.route('/delete-report', methods=['GET', 'POST'])
 def delete_report():
@@ -553,9 +569,15 @@ def delete_report():
         entry_num_var = queries.getEntriesID(myDb, location, entryType, versionID)
 
         if len(entry_num_var) < 2:
-            queries.delete_Report(myDb, entry_num_var)
-            session['message'] = "Report is deleted"  # Store the delete message in the session
-            return jsonify({'redirect_url': '/success'})
+            if entry_num_var:
+                if queries.delete_Report(myDb, entry_num_var[0]):
+                    session['message'] = "Report is deleted"  # Store the delete message in the session
+                    return jsonify({'redirect_url': '/success'})
+                else:
+                        error_message = "Unable to delete the report."
+            else:
+                error_message = "Report entry not found."
+            return render_template('error.html', error_message=error_message)
         else:
             # Store entry_num_var in session and return the redirect URL
             session['entry_num_var'] = entry_num_var
@@ -579,10 +601,15 @@ def deleteReport():
         if not entry_num_var:
             return 'No entry_num_var found in session', 400
 
-        queries.delete_Report(myDb, entry_num_var)
-        session['message'] = "Report is deleted"  
-        return jsonify({'redirect_url': '/success'})
-
+        if entry_num_var:
+                if queries.delete_Report(myDb, entry_num_var[0]):
+                    session['message'] = "Report is deleted"  # Store the delete message in the session
+                    return jsonify({'redirect_url': '/success'})
+                else:
+                    error_message = "Unable to delete the report."
+        else:
+            error_message = "Report entry not found."
+        return render_template('error.html', error_message=error_message)
 
 
 @app.route('/dates', methods=['POST'])

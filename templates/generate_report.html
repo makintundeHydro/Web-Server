@@ -67,6 +67,12 @@
 
         }
 
+        #box_div {
+            flex-grow: 1;
+            border: 1px solid white; 
+            padding-right: 500px; 
+        }
+
         #legend_image {
             width: 33.33%;
         }
@@ -171,6 +177,19 @@
             margin-top: 0;
         }
 
+        .notes-container {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        #notes {
+            width: 400px;
+            display: block;
+            white-space: pre-line;
+        }
+
         .table-bordered2 td {
             border: 1px solid black;
             padding: 4px;
@@ -252,9 +271,10 @@
                     <div id="legend_image">
                         <img alt="">
                     </div>
-                    <div style="flex-grow: 1;"></div>
-                    <div id="notes">
+                    <div id="box_div"></div>                    
+                    <div class="notes-container">
                         <h2>Notes</h2>
+                        <p style="font-size: 10px;" id="notes"></p>
                     </div>
                 </div>
             </div>
@@ -441,6 +461,10 @@
         }
 
         data = JSON.parse('{{ send|tojson }}');
+        
+        var note = document.getElementById('notes')
+        note.innerText = data.report_container.reportNotes.replace(/\\n/g, '<br>');
+        
         const legendImageElement = document.querySelector('#legend_image img');
         if (legendImageElement) {
             legendImageElement.src = data.report_container.legendImage;
