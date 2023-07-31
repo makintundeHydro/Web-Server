@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Company Nav Bar</title>
+    <link rel="stylesheet" href="static/navbar.css">
+    <style>
+
+    </style>
 </head>
 <body>
-    <textarea id="comments" rows="5" cols="50"></textarea>
+    <nav class="fixed-nav">
+        <div class="logo">
+          <img src="company_logo.png" alt="Company Logo">
+        </div>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+
+
+
+
 </body>
-<script>
-    data = '{"Model": {"Generator Models": {"GENSAL": {"Figure": {"bus": [{"bus": "232342", "id": "1"}], "con": [{"col1": "j", "col2": "D-Axis Opened Circuit Transient Time Constant", "col3": "T\u0027do (\u003e 0)", "col4": "2"}, {"col1": "j+1", "col2": "D-Axis Opened Circuit Sub-transient Time Constant", "col3": "T\u0027\u0027do (\u003e 0)", "col4": "3"}, {"col1": "j+2", "col2": "Q-Axis Opened Circuit Transient Time Constant", "col3": "T\u0027qo (\u003e 0)", "col4": "4"}, {"col1": "j+3", "col2": "Inertia", "col3": "H", "col4": "2"}, {"col1": "j+4", "col2": "Speed Damping", "col3": "D", "col4": "3"}, {"col1": "j+5", "col2": "D-Axis Synchronous Reactance", "col3": "Xd", "col4": "2"}, {"col1": "j+6", "col2": "Q-Axis Synchronous Reactance", "col3": "Xq", "col4": "3"}, {"col1": "j+7", "col2": "D-Axis Transient Reactance", "col3": "X\u0027d", "col4": "3"}, {"col1": "j+8", "col2": "D/Q-Axis Sub-transient Reactance", "col3": "X\u0027\u0027d = X\u0027\u0027q", "col4": "22"}, {"col1": "j+9", "col2": "Leakage Reactance", "col3": "Xl", "col4": "2"}, {"col1": "j+10", "col2": "Open Circuit Saturation Factor", "col3": "S(1.0)", "col4": "3"}, {"col1": "j+111", "col2": "Open Circuit Saturation Factor", "col3": "S(1.2)", "col4": "2"}], "image": "http://localhost:3000/uploads/ApTpMo7uY7qfWf4.jpg"}}}}, "about_report": {"LoginID": 1, "access": ["Interconnection Request", "AS-Built", "NERC"], "consultant": "Hydro", "effective_date": "2023-07-12", "entry-type": "Interconnection Request", "generator_owner": "Manitoba", "initials": "MH", "location": "St Joseph", "revision_date": "2023-06-29", "role": 1}, "machine_seq_table": {"data": [["232342", "1", "4", "4", "3", "2", "3", "4", "4", "5", "3", "3", "4", "4"]], "footnote": ""}, "report_container": {"busNumbers": ["232342", "435322"], "legendImage": "legend_url", "reportImage": "http://localhost:3000/uploads/pOWzSCbxAnAYMBf.jpg", "reportNotes": "1. dsidsleuwifbwe\n2. siuufwseruowfoef"}, "two_winding_table": {"data": [["886990", "232342", "1", "9", "6", "8", "67", "9", "8", "7", "8", "8", "8", "90", "9", "09", "3", "3", "3", "3", "2", "3", "3", "32", "3", "2", "2", "3", "22", "2", "3"]], "footnote": ""}}'
-    const value1 = {
-        "name" : "Mayokun",
-        "comments" : "My name is Mayokun \\nI have a car \\nI have a house"
-    }
-    var commentsTextArea = document.querySelector("#comments");
-    commentsTextArea.value = value1.comments.replace(/\\n/g, '\n');
-</script>
+
 </html>

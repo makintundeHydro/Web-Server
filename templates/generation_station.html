@@ -1,8 +1,5 @@
-<!-- This is the page that shows up first when you want to create a new report. 
-  The Page includes a drop down box where you will choose the generating station.  -->
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,12 +58,26 @@
       cursor: pointer;
     }
   </style>
+      <link rel="stylesheet" href="static/navbar.css">
+
 </head>
 
 <body>
-  <header>
-    <a href="/logout" class="logout-button">Logout</a>
-  </header>
+  <nav class="fixed-nav">
+    <div class="logo">
+      <a href="/choose"> 
+        <img src="static\ManitobaHydro.png" style="width: 150px; height: auto;">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/choose">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Documentation</a></li>
+      <li><a href="/logout">Log Out</a></li>
+    </ul>
+  </nav>
+  <br><br>
+<div id="id_body">
   <div class="card">
     <div class="card-body">
       <h3 class="card-title">Welcome to the PSSE Tool</h3>
@@ -106,6 +117,7 @@
       </div>
     </div>
   </div>
+</div>
 </body>
 
 <script>

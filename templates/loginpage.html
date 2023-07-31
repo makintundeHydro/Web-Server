@@ -1,61 +1,65 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" href="static\style.css">
 </head>
+
 <body>
-  <div class="card">
-    <div class="card-body">
-      <h2>PSSE\E Management Tool</h2>
-      <form id="loginForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-        
-        <button class="btn-primary" type="submit">Login</button>
-      </form>
-      <p id="loginResult" style="display: none;"></p>
+  <div id="id_body">
+    <div class="card">
+      <div class="card-body">
+        <h2>PSSE\E Management Tool</h2>
+        <form id="loginForm">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required><br><br>
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required><br><br>
+
+          <button class="btn-primary" type="submit">Login</button>
+        </form>
+        <p id="loginResult" style="display: none;"></p>
+      </div>
     </div>
   </div>
-    
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
+    document.getElementById("loginForm").addEventListener("submit", function (event) {
       event.preventDefault(); // Prevent form submission
-      
+
       const formData = new FormData();
       formData.append("username", document.getElementById("username").value);
       formData.append("password", document.getElementById("password").value);
-      
+
       fetch("/login", {
         method: "POST",
         body: formData
       })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          var loginResult = document.getElementById("loginResult");
-          loginResult.textContent = "Login is incorrect.";
-          loginResult.style.display = "block";
-          throw new Error("Error logging in.");
-        }
-      })
-      .then(data => {
-        if (data.redirect_url) {
-          window.location = data.redirect_url;
-        } else {
-          throw new Error("Invalid response from the server.");
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            var loginResult = document.getElementById("loginResult");
+            loginResult.textContent = "Login is incorrect.";
+            loginResult.style.display = "block";
+            throw new Error("Error logging in.");
+          }
+        })
+        .then(data => {
+          if (data.redirect_url) {
+            window.location = data.redirect_url;
+          } else {
+            throw new Error("Invalid response from the server.");
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
     });
   </script>
 </body>
+
 </html>

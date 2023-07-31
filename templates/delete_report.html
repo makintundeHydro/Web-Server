@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Centered Card with Dropdown and Date Selection</title>
   <style>
@@ -59,60 +60,72 @@
       padding: 8px 12px;
       border-radius: 5px;
     }
-
   </style>
-</head>
-<body>
-  <header>
-    <a href="/logout" class="logout-button">Logout</a>
-  </header>
+  <link rel="stylesheet" href="static/navbar.css">
 
-  <div class="card">
-    <div class="card-body">
-      <div class="form-group">
-        <label for="reportType">Type of report:</label>
-        <select id="reportType">
-          <option disabled selected>Choose Report Type</option>
-          <option value="Preliminary">Preliminary</option>
-          <option value="Interconnection Request">Interconnection Request</option>
-          <option value="AS-Built">AS-Built</option>
-        </select>
-        <br></br>
-        <label for="location">Select a location:</label>
-        <select id="location"></select>
-        <br></br>
-        <label for="date">Select a date:</label>
-        <select id="date"></select>
-        <br></br>
-        <button onclick=" deleteEntry()">Delete Entry</button>
+</head>
+
+<body>
+  <nav class="fixed-nav">
+    <div class="logo">
+      <a href="/choose"> 
+        <img src="static\ManitobaHydro.png" style="width: 150px; height: auto;">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/choose">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Documentation</a></li>
+      <li><a href="/logout">Log Out</a></li>
+    </ul>
+  </nav>
+  <div id="id_body">
+    <div class="card">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="reportType">Type of report:</label>
+          <select id="reportType">
+            <option disabled selected>Choose Report Type</option>
+            <option value="Preliminary">Preliminary</option>
+            <option value="Interconnection Request">Interconnection Request</option>
+            <option value="AS-Built">AS-Built</option>
+          </select>
+          <br></br>
+          <label for="location">Select a location:</label>
+          <select id="location"></select>
+          <br></br>
+          <label for="date">Select a date:</label>
+          <select id="date"></select>
+          <br></br>
+          <button onclick=" deleteEntry()">Delete Entry</button>
+        </div>
       </div>
     </div>
   </div>
-
   <script>
-    var Locations = ["Choose Location","Brandon", "Dorsey", "Grand Rapids", "Great Falls", "Jenpeg", "Kelsey", "Kettle", "Limestone", "Long Spruce", "McArthur", "Pine Falls", "Point du Bois", "Selkirk", "Seven Sisters", "St Joseph", "St Leon", "Wuskwatim"];
+    var Locations = ["Choose Location", "Brandon", "Dorsey", "Grand Rapids", "Great Falls", "Jenpeg", "Kelsey", "Kettle", "Limestone", "Long Spruce", "McArthur", "Pine Falls", "Point du Bois", "Selkirk", "Seven Sisters", "St Joseph", "St Leon", "Wuskwatim"];
 
-    window.onload = function() {
+    window.onload = function () {
       var locationDropdown = document.getElementById("location");
       var dateDropdown = document.getElementById("date");
 
-      Locations.forEach(function(location) {
+      Locations.forEach(function (location) {
         var option = document.createElement("option");
         option.text = location;
         option.value = location;
         locationDropdown.appendChild(option);
       });
 
-      locationDropdown.addEventListener("change", function() {
+      locationDropdown.addEventListener("change", function () {
         var selectedLocation = this.value;
 
-        (async function() {
-          setTimeout(async function() {
+        (async function () {
+          setTimeout(async function () {
             var dates = await getDatesFromDatabase(selectedLocation);
 
             dateDropdown.innerHTML = "";
 
-            dates.forEach(function(date) {
+            dates.forEach(function (date) {
               var option = document.createElement("option");
               option.text = date;
               option.value = date;
@@ -150,35 +163,35 @@
     }
 
     function deleteEntry() {
-    var selectedLocation = document.getElementById("location").value;
-    var selectedReportType = document.getElementById("reportType").value;
-    var selectedDate = document.getElementById("date").value;
+      var selectedLocation = document.getElementById("location").value;
+      var selectedReportType = document.getElementById("reportType").value;
+      var selectedDate = document.getElementById("date").value;
 
-    var formData = new FormData();
-    formData.append("location", selectedLocation);
-    formData.append("reportType", selectedReportType);
-    formData.append("date", selectedDate);
+      var formData = new FormData();
+      formData.append("location", selectedLocation);
+      formData.append("reportType", selectedReportType);
+      formData.append("date", selectedDate);
 
-    fetch("/delete-report", {
+      fetch("/delete-report", {
         method: "POST",
         body: formData
-    })
-    .then(response => {
-        if (response.ok) {
+      })
+        .then(response => {
+          if (response.ok) {
             return response.json();
-        } else {
+          } else {
             throw new Error("Error deleting entry");
-        }
-    })
-    .then(data => {
-      const redirectUrl = data.redirect_url;
-      window.location = redirectUrl;
-    })
-    .catch(error => {
-        console.log(error);
-    });
-}
+          }
+        })
+        .then(data => {
+          const redirectUrl = data.redirect_url;
+          window.location = redirectUrl;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   </script>
 </body>
-</html>
 
+</html>

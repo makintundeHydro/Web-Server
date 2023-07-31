@@ -1,66 +1,83 @@
 <!-- This is the page where you signify if you are a admin or user. 
   Admin will be routed to a new page where they need to sign to be able to access read and write permissions.  
   User will sign in but have only read permissions.  -->
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Choose Action</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      
-      .card {
-        padding: 20px;
-        border-radius: 4px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-      }
-      
-      h1 {
-        color: #333;
-      }
-      
-      .button {
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 10px;
-        background-color: #007bff;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 4px;
-        font-size: 16px;
-        transition: background-color 0.3s;
-      }
-      
-      .button:hover {
-        background-color: #45a049;
-      }
-    </style>
-  </head>
-  <body>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Choose Action</title>
+  <style>
+    #id_body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <link rel="stylesheet" href="static/navbar.css">
+</head>
+
+<body>
+  <nav class="fixed-nav">
+    <div class="logo">
+      <a href="/choose"> 
+        <img src="static\ManitobaHydro.png" style="width: 150px; height: auto;">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/choose">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Documentation</a></li>
+      <li><a href="/logout">Log Out</a></li>
+    </ul>
+  </nav>
+  <div id="id_body">
+
     <div class="card">
       <h2>Raw Files</h2>
       <a href="#" class="button">Create Raw</a>
       <a href="#" class="button">Delete Raw</a>
       <a href="#" class="button">View Raw</a>
-    
+
       <h2>Report Files</h2>
       <a href="/generation-station" class="button">Create Report</a>
       <a href="/delete-report" class="button">Delete Report</a>
       <a href="/generate_dyr" class="button">View Report</a>
     </div>
-    
-    <script>
-      // Add your JavaScript code here if needed
-    </script>
-  </body>
-  </html>
-  
+
+  </div>
+
+</body>
+
+</html>

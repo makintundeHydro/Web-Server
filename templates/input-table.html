@@ -1,6 +1,7 @@
 <!-- This is the HTML for Models Table -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,108 +9,138 @@
     <title>Generator Model</title>
     <link rel="stylesheet" href="static/specialTables.css">
     <style>
-      th,button {
-          font-size: 10px;
-      }
+        th,
+        button {
+            font-size: 10px;
+        }
 
-      h1,h2 {
-          font-size: 16px;
-      }
-      header {
-      position: fixed;
-      top: 0;
-      right: 0;
-      padding: 10px;
-    }
+        h1,
+        h2 {
+            font-size: 16px;
+        }
 
-    .logout-button {
-      text-decoration: none;
-      color: #ffffff;
-      background-color: #ff0000;
-      padding: 8px 12px;
-      border-radius: 5px;
-    }
+        header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 10px;
+        }
+
+        .logout-button {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #ff0000;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        #id_body {
+            padding-top: 70px;
+        }
     </style>
-</head>
-<body>
-    <header>
-        <a href="/logout" class="logout-button">Logout</a>
-    </header>
-    <h1 id = "header"></h1>
-    <div class="card">
-        <h2 class="table-heading">For Machine at:</h2>
-        <table id="busIDAdd">
-          <thead>
-            <tr>
-              <th>Bus</th>
-              <th>ID</th>
-              <th>Add Bus</th>
-            </tr>
-          </thead>
-          <tbody id = "rows">
-            <tr id="row1">
-              <td><select name="ToBusNum"></select></td>
-              <td><select name="ID"></select></td>
-              <td><button class="btn btn-primary" onclick="addBusID()">Add</button></td>
-            </tr>
-          </tbody>
-        </table>
-    </div>
-    
-    <div id="iconTable">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">ICON</th>
-                    <th scope="col">DESCRIPTION</th>
-                    <th scope="col">PARAMETER</th>
-                    <th scope="col">VALUE</th>
-                    <th scope="col">UNITS</th>
-                </tr>
-            </thead>
-            <tbody  id = "rows">
-                <tr>
-                    <td></td><td></td><td></td><td><input required type="decimal" ></td><td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    
-    <div id="conTable">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">CON</th>
-                    <th scope="col">DESCRIPTION</th>
-                    <th scope="col">PARAMETER</th>
-                    <th scope="col">VALUE</th>
-                    <th scope="col">UNITS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                  <td></td><td></td><td></td><td><input required type="decimal"  ></td><td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    
-    <div class="card">
-        <h1>Upload Model</h1>
-        <input type="file" accept="image/*">
-    </div>
+    <link rel="stylesheet" href="static/navbar.css">
 
-    <div class="button-container">
-        <button onclick="newTable()"  class="btn btn-primary">New Table</button>
-        <button onclick="submitForm(event)" class="btn btn-primary">Submit</button>
+</head>
+
+<body>
+    <nav class="fixed-nav">
+        <div class="logo">
+          <a href="/choose"> 
+            <img src="static\ManitobaHydro.png" style="width: 150px; height: auto;">
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/choose">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="/logout">Log Out</a></li>
+        </ul>
+      </nav>
+
+    <div id="id_body">
+        <h1 id="header"></h1>
+        <div class="card">
+            <h2 class="table-heading">For Machines at:</h2>
+            <table id="busIDAdd">
+                <thead>
+                    <tr>
+                        <th>Bus</th>
+                        <th>ID</th>
+                        <th>Add Bus</th>
+                    </tr>
+                </thead>
+                <tbody id="rows">
+                    <tr id="row1">
+                        <td><select name="ToBusNum"></select></td>
+                        <td><select name="ID"></select></td>
+                        <td><button class="btn btn-primary" onclick="addBusID()">Add</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="iconTable">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">ICON</th>
+                        <th scope="col">DESCRIPTION</th>
+                        <th scope="col">PARAMETER</th>
+                        <th scope="col">VALUE</th>
+                        <th scope="col">UNITS</th>
+                    </tr>
+                </thead>
+                <tbody id="rows">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><input required type="decimal"></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="conTable">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">CON</th>
+                        <th scope="col">DESCRIPTION</th>
+                        <th scope="col">PARAMETER</th>
+                        <th scope="col">VALUE</th>
+                        <th scope="col">UNITS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><input required type="decimal"></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h1>Upload Model</h1>
+            <input type="file" accept="image/*">
+        </div>
+
+        <div class="button-container">
+            <button onclick="newTable()" class="btn btn-primary">New Table</button>
+            <button onclick="submitForm(event)" class="btn btn-primary">Submit</button>
+        </div>
     </div>
-    
     <script>
         var num = 1
         var busNumbersData = JSON.parse('{{ busNumbers|tojson }}');         //This is the JSON passed from the Flask server. 
         var list = JSON.parse('{{ list|tojson }}')                          //This is the JSON passed from the Flask server. 
         var name = JSON.parse('{{ name|tojson }}')                      //This is the JSON passed from the Flask server. 
-        var model = JSON.parse('{{ model |tojson }}') 
+        var model = JSON.parse('{{ model |tojson }}')
 
         // addBusID() : The first table is a bus, id table. The function below
         //              is used to add the bus and id drop down box and a action button
@@ -124,17 +155,17 @@
             //This is used to create the select for bus drop down box.
             var selectCell1 = document.createElement("td"); //first cell
             var select1 = document.createElement("select"); //drop down box
-           
+
             select1.name = 'ToBusNum'
             selectCell1.appendChild(select1);
             row.appendChild(selectCell1);
-            
+
 
             //This is used to create the select for id drop down box.
             var selectCell2 = document.createElement("td"); //second cell
             var select2 = document.createElement("select"); //drop down box
             select2.name = 'ID'
-            
+
             selectCell2.appendChild(select2);
             row.appendChild(selectCell2);
 
@@ -258,15 +289,15 @@
                     "X-request-ID": "Submit" // set the X-request-ID header
                 }
             })
-            .then(response => {
+                .then(response => {
                     if (response.ok) {
                         return response.json();
                     } else {
                         throw new Error("Error uploading file and data");
                     }
                 })
-            .then(data => {window.location = data.redirect_url;})
-            .catch(error => {console.log(error);});
+                .then(data => { window.location = data.redirect_url; })
+                .catch(error => { console.log(error); });
         }
 
         // newTable() : The function is used to send the table data to the server then redirect so we can submit new data
@@ -283,15 +314,15 @@
                     "X-request-ID": "newTable" // set the X-request-ID header
                 }
             })
-            .then(response => {
+                .then(response => {
                     if (response.ok) {
                         return response.json();
                     } else {
                         throw new Error("Error uploading file and data");
                     }
                 })
-            .then(data => {window.location = data.redirect_url;})
-            .catch(error => {console.log(error);});
+                .then(data => { window.location = data.redirect_url; })
+                .catch(error => { console.log(error); });
         }
 
 
@@ -320,7 +351,7 @@
                     cell.textContent = row[i];;
                     newRow.appendChild(cell);
                 }
-                
+
                 //create an input box. 
                 var inputCell = document.createElement("td");
                 var input = document.createElement("input");
@@ -339,17 +370,17 @@
         window.onload = function () {
             selectBusNum(num);            //Fill the Bus Number Drop down box for the first row
             selectIDNum(num);             //Fill the ID Number Drop down box for the first row
-            document.getElementById("header").textContent  =  model + ": " + name;        //Fill the h1
-            if(list.con.length > 0){
+            document.getElementById("header").textContent = model + ": " + name;        //Fill the h1
+            if (list.con.length > 0) {
                 populateTable("con");
             }
-            if(list.icon.length > 0){
+            if (list.icon.length > 0) {
                 populateTable("icon");  //populate icon table.
             }
-            if (list.icon.length == 0){
+            if (list.icon.length == 0) {
                 document.getElementById("iconTable").style.display = "none";
             }
-            if (list.con.length == 0){
+            if (list.con.length == 0) {
                 document.getElementById("cconTable").style.display = "none";
             }
         };

@@ -9,6 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Add Bus Numbers</title>
   <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="static/navbar.css">
   <style>
     header {
       position: fixed;
@@ -49,30 +50,45 @@
 </head>
 
 <body>
-  <header>
-    <a href="/logout" class="logout-button">Logout</a>
-  </header>
-  <div class="card scrollable-card">
-    <h1 id="locationHeader">{{ location }}</h1>
-    <div class="form-group">
-      <label for="reportImage">Report Image:</label>
-      <input type="file" id="reportImage" name="reportImage" accept="image/*">
+  <nav class="fixed-nav">
+    <div class="logo">
+      <a href="/choose"> 
+        <img src="static\ManitobaHydro.png" style="width: 150px; height: auto;">
+      </a>
     </div>
-    <div class="form-group">
-      <label for="reportNotes">Notes:</label>
-      <textarea id="reportNotes" name="reportNotes" rows="10" cols="50" placeholder="Add notes about the report..."></textarea>
+    <ul class="nav-links">
+      <li><a href="/choose">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Documentation</a></li>
+      <li><a href="/logout">Log Out</a></li>
+    </ul>
+  </nav>
+  <div id="id_body">
+    <div class="card scrollable-card">
+      <h1 id="locationHeader">{{ location }}</h1>
+      <div class="form-group">
+        <label for="reportImage">Report Image:</label>
+        <input type="file" id="reportImage" name="reportImage" accept="image/*">
+      </div>
+      <div class="form-group">
+        <label for="reportNotes">Notes:</label>
+        <textarea id="reportNotes" name="reportNotes" rows="10" cols="50"
+          placeholder="Add notes about the report..."></textarea>
+      </div>
+
+      <h3 class="card-title">Enter all bus numbers</h3>
+      <div id="busNumbers">
+        <div class="form-group name-input">
+          <input type="number" class="form-control" name="buses[]" required placeholder="Ex: 669710">
+          <button type="button" class="btn btn-danger" onclick="removeNameInput(this)">Remove</button>
+        </div>
+      </div>
+      <button id="newButton" type="button" class="btn btn-primary" onclick="addNewBusNumber()">NEW</button>
+      <button id="submitButton" type="submit" class="btn btn-primary" onclick="submitForm(this)">Next</button>
     </div>
 
-    <h3 class="card-title">Enter all bus numbers</h3>
-    <div id="busNumbers">
-      <div class="form-group name-input">
-        <input type="number" class="form-control" name="buses[]" required placeholder="Ex: 669710">
-        <button type="button" class="btn btn-danger" onclick="removeNameInput(this)">Remove</button>
-      </div>
-    </div>
-    <button id="newButton" type="button" class="btn btn-primary" onclick="addNewBusNumber()">NEW</button>
-    <button id="submitButton" type="submit" class="btn btn-primary" onclick="submitForm(this)">Next</button>
   </div>
+
   <script>
     function addNewBusNumber() {
       if (checkInputsFilled()) {
