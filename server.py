@@ -336,6 +336,14 @@ def review():
         return redirect(url_for('admin'))
     return render_template('review.html', send = sendToDb)
 
+
+@app.route('/dyr')
+def gen_dyr():
+    sendToDb = session.get('sendToDb', {})
+    if not session.get('logged_in'):
+        return redirect(url_for('admin'))
+    return render_template('dyr_generation.html')
+
 @app.route('/view')
 def view():
     if not session.get('logged_in'):

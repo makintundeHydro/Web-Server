@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Centered Card with Dropdown and Date Selection</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            width: 800px;
+            height: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        select,
+        input[type="date"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #0c41f0;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 10px;
+        }
+
+        .logout-button {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #ff0000;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        #button-mid {
+            text-align: center;
+        }
+
+        .locFormat {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+    <link rel="stylesheet" href="static/navbar.css">
+
+</head>
+
+<nav class="fixed-nav">
+    <div class="logo">
+        <a href="/choose">
+            <img src="static\ManitobaHydro.png" style="width: 150px; height: auto;">
+        </a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="/choose">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="/logout">Log Out</a></li>
+    </ul>
+</nav>
+<div class="card">
+    <div class="card-body">
+        <div class="form-group">
+            <h2>Select multiple locations and dates:</h2>
+            <div class="locations-dates">
+                <div class="location-date locFormat">
+                    <select style="height: 30px; font-size: 14px;" id="reportType">
+                        <option disabled selected>Choose Report Type</option>
+                        <option value="Preliminary">Preliminary</option>
+                        <option value="Interconnection Request">Interconnection Request</option>
+                        <option value="AS-Built">AS-Built</option>
+                    </select>
+                    <select style="height: 30px; font-size: 14px;" id="location" onchange="populateDatesDropdown( document.getElementById('reportType'),this, document.getElementById('date'))"></select>
+                    <select style="height: 30px; font-size: 14px;" id="date" ></select>
+                </div>
+            </div>
+            <br><br>
+            <div id = "button-mid">
+                <button onclick="repeatLocationAndButton()">More</button>
+                <button onclick="generateDYRFile()">Generate DYR File</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var Locations = ["Choose Location", "Brandon", "Dorsey", "Grand Rapids", "Great Falls", "Jenpeg", "Kelsey", "Kettle", "Limestone", "Long Spruce", "McArthur", "Pine Falls", "Point du Bois", "Selkirk", "Seven Sisters", "St Joseph", "St Leon", "Wuskwatim"];
+    var numRow = 1;
+        //Fill the row with locations. 
+        function populateLocationsDropdown(locationDropdown) {
+            Locations.forEach(function (locate) {
+                var option = document.createElement("option");
+                option.text = locate;
+                option.value = locate;
+                locationDropdown.appendChild(option);
+            });
+        }
+
+        window.onload = function () {
+            populateLocationsDropdown(document.getElementById("location")); // Fill location for the first row.
+        };
+
+
+        function repeatLocationAndButton() {
+            const locationDateContainer = document.querySelector('.locations-dates');
+            const newDiv = document.createElement('div');
+            newDiv.innerHTML = `
+                <div class=" locFormat location-date${numRow}">
+                    <select style="height: 30px; font-size: 14px;" id="reportType${numRow}">
+                        <option disabled selected>Choose Report Type</option>
+                        <option value="Preliminary">Preliminary</option>
+                        <option value="Interconnection Request">Interconnection Request</option>
+                        <option value="AS-Built">AS-Built</option>
+                    </select>
+                    <select style="height: 30px; font-size: 14px;" id="location${numRow}" onchange="populateDatesDropdown(document.getElementById('reportType${numRow}'),this, document.getElementById('date${numRow}'))"></select>
+                    <select style="height: 30px; font-size: 14px;" id="date${numRow}"></select>
+                    <button style="background-color: red; color: white; height: 30px; font-size: 14px;" onclick="deleteRow(this)">Delete</button>
+                </div>
+            `;
+            locationDateContainer.appendChild(newDiv);
+
+            // Fill location for the new row.
+            populateLocationsDropdown(document.getElementById(`location${numRow}`));
+
+            numRow++;
+        }
+        function populateDatesDropdown(reportTypeDropdown,locationDropdown, dateDropdown) {
+            locationDropdown.addEventListener("change", function () {
+                var selectedLocation = this.value;
+
+                (async function () {
+                    setTimeout(async function () {
+                        var dates = await getDatesFromDatabase(reportTypeDropdown.value,locationDropdown.value);
+
+                        dateDropdown.innerHTML = "";
+
+                        dates.forEach(function (date) {
+                            var option = document.createElement("option");
+                            option.text = date;
+                            option.value = date;
+                            dateDropdown.appendChild(option);
+                        });
+                    }, 500);
+                })();
+            });
+        }
+
+    function deleteRow(button) {
+        const rowToDelete = button.parentNode.parentNode;;
+        const locationDateContainer = document.querySelector('.locations-dates');
+        locationDateContainer.removeChild(rowToDelete);
+    }
+
+    async function getDatesFromDatabase(selectedReportType,location) {
+        var formData = new FormData();
+        formData.append("location", location);
+        formData.append("reportType", selectedReportType);
+
+        try {
+            const response = await fetch("/dates", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error("Error generating DYR file");
+            }
+
+            const data = await response.json();
+            return data.dates;
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    }
+
+
+
+
+
+    function generateDYRFile() {
+    const dataArray = [];
+    const locationDateContainers = document.querySelectorAll('.locations-dates');
+    locationDateContainers.forEach(function (locationDateContainer) {
+        const selectedReportType = locationDateContainer.querySelector('#reportType').value;
+        const selectedLocation = locationDateContainer.querySelector('#location').value;
+        const selectedDate = locationDateContainer.querySelector('#date').value;
+
+        dataArray.push([selectedReportType,selectedLocation,selectedDate]);
+    });
+
+        var formData = new FormData();
+        formData.append("data", dataArray);
+
+
+        fetch("/generate_dyr", {
+            method: "POST",
+            body: formData,
+        })
+            .then(function (response) {
+                if (response.ok) {
+                    // Check if the response is a file (blob)
+                    if (response.headers.get("content-type").startsWith("application/octet-stream")) {
+                        return response.blob();
+                    } else {
+                        // If not a file, assume it's a JSON response for redirection
+                        return response.json().then(function (data) {
+                            if (data.redirect_url) {
+                                window.location.href = data.redirect_url;
+                            } else {
+                                throw new Error("Invalid server response");
+                            }
+                        });
+                    }
+                } else {
+                    throw new Error("Error generating DYR file");
+                }
+            })
+            .then(function (blob) {
+                // If response is a file (blob), trigger the download
+                var downloadLink = document.createElement("a");
+                var url = URL.createObjectURL(blob);
+                downloadLink.href = url;
+                downloadLink.download = "output.dyr";
+                downloadLink.click();
+                URL.revokeObjectURL(url);
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+
+    }
+</script>
+</body>
+
+</html>
